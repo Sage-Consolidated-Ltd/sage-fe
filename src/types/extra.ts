@@ -29,6 +29,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   lineHeight?: string;
   textSize?: string;
   format?: string;
+  font?: string;
 }
 
 export interface ToggleButtonProps {

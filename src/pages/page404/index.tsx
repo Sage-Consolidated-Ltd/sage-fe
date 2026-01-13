@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
 
 const NotFound = () => {
-  useTitle("404 Not Found | Renimail");
+  useTitle("404 Not Found | Sage-Shield");
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 flex items-center justify-center px-4">

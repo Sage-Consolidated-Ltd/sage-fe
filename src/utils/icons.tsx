@@ -1005,3 +1005,41 @@ export const InfoIcon: React.FC<ToggleIconProps> = ({ className }) => (
     </defs>
   </svg>
 );
+
+export const TrendIcon: React.FC<ToggleIconProps> = ({ className }) => (
+  <svg
+    className={className}
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M16.5 5.25L10.5985 11.1515C10.3015 11.4485 10.153 11.597 9.98176 11.6526C9.83113 11.7016 9.66887 11.7016 9.51824 11.6526C9.34699 11.597 9.19848 11.4485 8.90147 11.1515L6.84853 9.09853C6.55152 8.80152 6.40301 8.65301 6.23176 8.59737C6.08113 8.54842 5.91887 8.54842 5.76824 8.59737C5.59699 8.65301 5.44848 8.80152 5.15147 9.09853L1.5 12.75M16.5 5.25H11.25M16.5 5.25V10.5"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const DownTrendIcon: React.FC<ToggleIconProps> = ({ className }) => (
+  <svg
+    className={className}
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M1.5 12.75L7.40147 6.84853C7.69848 6.55152 7.84699 6.40301 8.01824 6.34737C8.16887 6.29842 8.33113 6.29842 8.48176 6.34737C8.65301 6.40301 8.80152 6.55152 9.09853 6.84853L11.1515 8.90147C11.4485 9.19848 11.597 9.34699 11.7682 9.40263C11.9189 9.45158 12.0811 9.45158 12.2318 9.40263C12.403 9.34699 12.5515 9.19848 12.8485 8.90147L16.5 5.25M1.5 12.75H6.75M1.5 12.75V7.5"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
