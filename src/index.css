@@ -26,12 +26,14 @@
 
   --color-info: #a4c1e3;
   --color-error: #fa4f19;
+  --color-alt: #f3eeeb;
   --color-warning: #ff9000;
   --color-success: #38a169;
 
   /* breakpoints */
   --breakpoint-xs: 350px;
   --breakpoint-sm: 480px;
+  --breakpoint-ms: 600px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 976px;
   --breakpoint-xl: 1440px;
@@ -42,6 +44,9 @@
   --shadow-top-bar: 0px 11px 18.9px -2px #1e1a190f;
   --shadow-top-search: 0px 4.36px 46.3px 11px rgba(50, 28, 31, 0.12);
   --shadow-card: 6px 6px 54px 0px #0000000d;
+  --shadow-card: 6px 6px 54px 0px #0000000d;
+  --shadow-error: 0px 0px 0px 3px #fa4f1933;
+  --shadow-check: 0px 1px 4px 0px #0000001f;
 
   /* font */
   --font-primary: "Montserrat", sans-serif;
@@ -133,4 +138,14 @@
       #fa4f19 106.54%
     )
     1;
+}
+
+/* Custom class to force asterisk masking */
+.input-password-asterisk {
+  -webkit-text-security: disc; /* Use 'disc' for dots, or 'square' */
+}
+
+/* To specifically get Asterisks (*) */
+.input-password-asterisk {
+  -webkit-text-security: asterisk !important;
 }

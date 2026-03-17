@@ -32,6 +32,34 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   font?: string;
 }
 
+export interface InputProps {
+  type: "text" | "email" | "password" | "time";
+  label?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  className?: string;
+  required?: boolean;
+  name: string;
+  search?: boolean;
+  width?: string;
+  reset?: boolean;
+  approved?: boolean | "";
+  disabled?: boolean;
+  error?: boolean | "";
+  searchPosition?: "left" | "right";
+  maxLength?: number;
+}
+
+export interface RadioButtonProps {
+  id: string;
+  name: string;
+  label: string;
+  checked: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  desc?: string;
+}
+
 export interface ToggleButtonProps {
   checked?: boolean;
   onChange?: (checked: boolean) => void;

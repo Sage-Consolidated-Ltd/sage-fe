@@ -3,11 +3,18 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import { SidebarRoutes } from "./SidebarRoutes";
 // import { AuthGuard } from "../layouts/AuthGuard";
 import NotFound from "../pages/page404";
+import Login from "../pages/auths/login";
+import Onboard from "../pages/auths/onboarding";
 
 const toElement = (Comp?: React.LazyExoticComponent<React.ComponentType>) =>
   Comp ? <Comp /> : <Outlet />;
 const AppRoutes = () => (
   <Routes>
+    {/* ---------- public routes ---------- */}
+    <Route path="/auth/login" element={<Login />} />
+    <Route path="/auth/setup-wizard" element={<Onboard />} />
+
+    {/* ---------- protected routes ---------- */}
     <Route element={<DashboardLayout />}>
       {SidebarRoutes.map((route) => {
         /* ---------- parent with children ---------- */

@@ -21,7 +21,8 @@ const Button: React.FC<ButtonProps> = ({
   const baseClasses = `${font} rounded-[12px] w-full transition-colors tracking-[2%] flex items-center justify-center gap-2 ${height} ${paddingX} ${paddingY} ${shadow} ${textSize} ${format}`;
 
   // Disabled classes (same for all variants)
-  const disabledClasses = "bg-primary-100 text-white cursor-not-allowed";
+  const disabledClasses =
+    "bg-input-border text-text-secondary cursor-not-allowed";
 
   // Active variant classes (when not disabled)
   const activeVariantClasses: Record<"primary" | "white", string> = {

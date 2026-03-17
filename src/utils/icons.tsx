@@ -533,7 +533,6 @@ export const ChevronUpDownIcon: React.FC<{ className?: string }> = ({
     <path
       d="M7 15L12 20L17 15"
       stroke="currentColor"
-      stroke-opacity="0.6"
       stroke-width="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -541,7 +540,6 @@ export const ChevronUpDownIcon: React.FC<{ className?: string }> = ({
     <path
       d="M7 9L12 4L17 9"
       stroke="currentColor"
-      strokeOpacity="0.6"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -966,6 +964,24 @@ export const XIcon: React.FC<ToggleIconProps> = ({ className }) => (
   </svg>
 );
 
+export const CheckIcon: React.FC<ToggleIconProps> = ({ className }) => (
+  <svg
+    className={className}
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M14.7439 4.68558C15.0556 4.95834 15.0872 5.43216 14.8144 5.74389L8.25194 13.2439C7.98019 13.5545 7.50859 13.5871 7.19659 13.317L3.25909 9.90793C2.94594 9.6368 2.91188 9.16315 3.183 8.85C3.45413 8.53685 3.92778 8.50278 4.24093 8.77391L7.61438 11.6946L13.6856 4.75613C13.9583 4.4444 14.4322 4.41282 14.7439 4.68558Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
 export const InfoIcon: React.FC<ToggleIconProps> = ({ className }) => (
   <svg
     className={className}
@@ -1040,6 +1056,106 @@ export const DownTrendIcon: React.FC<ToggleIconProps> = ({ className }) => (
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const ChevronDoubleLeftIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M14.5735 3.69247C14.8356 3.91711 14.8659 4.31167 14.6413 4.57375L9.98992 10.0003L14.6413 15.4269C14.8659 15.689 14.8356 16.0836 14.5735 16.3082C14.3114 16.5328 13.9169 16.5025 13.6922 16.2404L8.69221 10.4071C8.4916 10.173 8.4916 9.82765 8.69221 9.59359L13.6922 3.76026C13.9169 3.49818 14.3114 3.46783 14.5735 3.69247ZM11.2402 3.69255C11.5023 3.91719 11.5327 4.31175 11.308 4.57383L6.65667 10.0004L11.308 15.427C11.5327 15.6891 11.5023 16.0837 11.2402 16.3083C10.9782 16.5329 10.5836 16.5026 10.359 16.2405L5.35896 10.4072C5.15834 10.1731 5.15834 9.82773 5.35896 9.59368L10.359 3.76034C10.5836 3.49827 10.9782 3.46791 11.2402 3.69255Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const ChevronDoubleRightIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M5.4265 16.3075C5.16443 16.0829 5.13407 15.6883 5.35871 15.4263L10.0101 9.99966L5.35871 4.57307C5.13408 4.311 5.16443 3.91643 5.42651 3.69179C5.68858 3.46716 6.08315 3.49751 6.30779 3.75959L11.3078 9.59292C11.5084 9.82697 11.5084 10.1724 11.3078 10.4064L6.30778 16.2397C6.08315 16.5018 5.68858 16.5322 5.4265 16.3075ZM8.75976 16.3074C8.49768 16.0828 8.46733 15.6882 8.69197 15.4262L13.3433 9.99958L8.69197 4.57299C8.46733 4.31091 8.49768 3.91635 8.75976 3.69171C9.02184 3.46707 9.4164 3.49742 9.64104 3.7595L14.641 9.59283C14.8417 9.82689 14.8417 10.1723 14.641 10.4063L9.64104 16.2397C9.4164 16.5017 9.02184 16.5321 8.75976 16.3074Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const ChevronLeftIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M12.9067 3.69247C13.1688 3.91711 13.1992 4.31167 12.9745 4.57375L8.32317 10.0003L12.9745 15.4269C13.1992 15.689 13.1688 16.0836 12.9067 16.3082C12.6447 16.5328 12.2501 16.5025 12.0255 16.2404L7.02546 10.4071C6.82485 10.173 6.82485 9.82765 7.02546 9.59359L12.0255 3.76026C12.2501 3.49818 12.6447 3.46783 12.9067 3.69247Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const ChevronRightIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M7.09326 16.3075C6.83118 16.0829 6.80083 15.6883 7.02547 15.4263L11.6768 9.99966L7.02547 4.57307C6.80083 4.311 6.83118 3.91643 7.09326 3.69179C7.35533 3.46716 7.7499 3.49751 7.97454 3.75959L12.9745 9.59292C13.1752 9.82697 13.1752 10.1724 12.9745 10.4064L7.97454 16.2397C7.7499 16.5018 7.35533 16.5322 7.09326 16.3075Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const InfoFillIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    className={className}
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M10.0003 1.6665C5.39795 1.6665 1.66699 5.39746 1.66699 9.99984C1.66699 14.6022 5.39795 18.3332 10.0003 18.3332C14.6027 18.3332 18.3337 14.6022 18.3337 9.99984C18.3337 5.39746 14.6027 1.6665 10.0003 1.6665ZM10.0003 5.83317C10.4606 5.83317 10.8337 6.20627 10.8337 6.6665V9.99984C10.8337 10.4601 10.4606 10.8332 10.0003 10.8332C9.54009 10.8332 9.16699 10.4601 9.16699 9.99984V6.6665C9.16699 6.20627 9.54009 5.83317 10.0003 5.83317ZM9.16699 13.3332C9.16699 12.8729 9.54009 12.4998 10.0003 12.4998H10.0087C10.4689 12.4998 10.842 12.8729 10.842 13.3332C10.842 13.7934 10.4689 14.1665 10.0087 14.1665H10.0003C9.54009 14.1665 9.16699 13.7934 9.16699 13.3332Z"
+      fill="currentColor"
     />
   </svg>
 );
