@@ -18,7 +18,7 @@ const ProfileModal = ({ isOpen, position, onClose }: ProfileModalProps) => {
     // Handle navigation or actions based on menu item
     switch (itemId) {
       case "profile":
-        navigate("/profile");
+        navigate("/settings/profile");
         break;
       case "users":
         navigate("/settings/users");

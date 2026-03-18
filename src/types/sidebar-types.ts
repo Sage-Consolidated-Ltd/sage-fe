@@ -26,14 +26,14 @@ export interface SidebarLogicReturn {
   toggleExpand: (
     routeName: string,
     routePath: string,
-    children?: SidebarRouteChild[]
+    children?: SidebarRouteChild[],
   ) => void;
   handleParentClick: (
     route: SidebarRoute,
     routePath: string,
     hasChildren: boolean,
     children?: SidebarRouteChild[],
-    routeName?: string
+    routeName?: string,
   ) => void;
   handleChildClickFromModal: (childPath: string) => void;
   closeModal: () => void;

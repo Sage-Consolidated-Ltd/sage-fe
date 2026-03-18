@@ -36,6 +36,7 @@
   --breakpoint-ms: 600px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 976px;
+  --breakpoint-xlg: 1300px;
   --breakpoint-xl: 1440px;
 
   /* shadows */
@@ -44,9 +45,10 @@
   --shadow-top-bar: 0px 11px 18.9px -2px #1e1a190f;
   --shadow-top-search: 0px 4.36px 46.3px 11px rgba(50, 28, 31, 0.12);
   --shadow-card: 6px 6px 54px 0px #0000000d;
-  --shadow-card: 6px 6px 54px 0px #0000000d;
   --shadow-error: 0px 0px 0px 3px #fa4f1933;
   --shadow-check: 0px 1px 4px 0px #0000001f;
+  --shadow-input: 0px 1px 3.4px 0px #00000040;
+  --shadow-settings: 6px 6px 16.6px 0px #0000000d;
 
   /* font */
   --font-primary: "Montserrat", sans-serif;
