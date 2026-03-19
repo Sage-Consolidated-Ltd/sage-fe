@@ -4,6 +4,7 @@ import Modal from "../../props/Modal";
 import { div } from "motion/react-client";
 import ProfileHeader from "./profile-components/ProfileHeader";
 import ProfileInformation from "./profile-components/ProfileInformation";
+import PasswordChange from "./profile-components/PasswordChange";
 
 const ProfileSettingsPage = () => {
   // State for each modal type
@@ -19,6 +20,9 @@ const ProfileSettingsPage = () => {
         <div className="flex flex-col gap-[22px] mt-48">
           {/* profile information */}
           <ProfileInformation />
+
+          {/* login credentials */}
+          <PasswordChange />
         </div>
       </div>
       <div className="w-full xlg:w-[62%] bg-amber-700">yello</div>

@@ -45,8 +45,11 @@ Available icons for use in the application.
 - `XIcon`
 - `CheckIcon`
 - `InfoIcon`
+- `SquaredInfoIcon`
 - `InfoFillIcon`
 - `EditIcon`
+- `KeyIcon`
+- `PortIcon`
 - `TrendIcon`
 - `DownTrendIcon`
 - `CircleCheckIcon`

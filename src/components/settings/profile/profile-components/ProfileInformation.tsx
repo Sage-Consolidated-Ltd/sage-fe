@@ -30,7 +30,7 @@ const ProfileInformation = () => {
         <SettingsCard.Row label="Phone Number" value="+1 (555) 123-4567" />
         <SettingsCard.Row label="Department" value="Engineering" />
         <SettingsCard.Row label="Joined">
-          <div>23 March 20204</div>
+          <p className="text-text-muted ">23 March 20204</p>
         </SettingsCard.Row>
       </SettingsCard>
       {/* edit profilemodal */}
