@@ -1,6 +1,6 @@
 import { SeverityIndicator, type Incident } from "../../../utils/incident";
 import type { ColumnDef } from "../../../types/table";
-import { ChevronRight1Icon } from "../../../utils/icons";
+import { ChevronRight1Icon, DetailsIcon } from "../../../utils/icons";
 import Table from "../../../shared/Table";
 
 interface TableProps {

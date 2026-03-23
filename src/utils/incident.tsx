@@ -76,7 +76,7 @@ export const SeverityIndicator = ({ level }: { level: SeverityLevel }) => {
   const activeColor = colors[level - 1];
 
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-0.5">
       {[1, 2, 3, 4].map((step) => (
         <div
           key={step}

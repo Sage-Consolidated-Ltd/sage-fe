@@ -7,6 +7,8 @@ import { Select } from "../../props/Select";
 import { XIcon } from "../../../utils/icons";
 import { mockIncidents } from "../../../utils/incident";
 import Dropdown from "../../props/Dropdown";
+import { industries } from "../../../utils/timezone";
+import Button from "../../props/Button";
 
 const IncidentTableTabs = () => {
   const [activeTab, setActiveTab] = useState("inprogress");

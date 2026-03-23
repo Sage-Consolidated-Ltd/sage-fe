@@ -58,6 +58,8 @@ Available icons for use in the application.
 - `CircleFilledCheckIcon`
 - `ResetIcon`
 - `ShieldIcon`
+- `DetailsIcon`
+- `RoundXIcon`
 
 ## Usage Example
 

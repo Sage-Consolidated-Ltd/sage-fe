@@ -11,12 +11,16 @@ import {
   type Incident,
 } from "../../../utils/incident";
 import type { ColumnDef } from "../../../types/table";
+import ContainAssetsModal from "../incident-modals/ContainAssetsModal";
+import { useState } from "react";
 
 interface TableProps {
   data: Incident[];
 }
 
 const InprogressTable = ({ data }: TableProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const columns: ColumnDef<Incident>[] = [
     {
       key: "name",
@@ -59,7 +63,10 @@ const InprogressTable = ({ data }: TableProps) => {
       header: "Action",
       cell: () => (
         <div className="flex items-center gap-3">
-          <ShieldIcon className="text-selection" />
+          <button onClick={() => setIsOpen(true)} className="cursor-pointer">
+            <ShieldIcon className="text-selection cursor-pointer" />
+          </button>
+
           <AiChatIcon className="text-primary-hover" />
           <ChevronRight1Icon className="text-text-muted" />
         </div>
@@ -68,12 +75,16 @@ const InprogressTable = ({ data }: TableProps) => {
   ];
 
   return (
-    <Table<Incident>
-      data={data}
-      columns={columns}
-      showHeader={false}
-      className="bg-transparent"
-    />
+    <>
+      <Table<Incident>
+        data={data}
+        columns={columns}
+        showHeader={false}
+        className="bg-transparent"
+      />
+
+      <ContainAssetsModal isOpen={isOpen} setIsOpen={setIsOpen} />
+    </>
   );
 };
 
