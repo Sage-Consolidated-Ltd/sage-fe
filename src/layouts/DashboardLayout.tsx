@@ -24,7 +24,7 @@ const DashboardLayout = () => {
       <Sidebar />
       <main className="flex-1 overflow-auto custom-scrollbar">
         <div className="flex flex-col">
-          <div className="sticky top-0 z-80">
+          <div className="sticky top-0 right-0 z-80">
             <Topbar toggleSidebar={toggleSidebar} />
           </div>
           <div className="py-6 px-4 relative">

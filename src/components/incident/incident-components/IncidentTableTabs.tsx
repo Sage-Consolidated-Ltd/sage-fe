@@ -47,7 +47,7 @@ const IncidentTableTabs = () => {
   };
 
   return (
-    <div className="bg-surface py-[27px] px-[30px] rounded-[18px] shadow-card relative overflow-hidden">
+    <div className="bg-surface py-[27px] px-[30px] rounded-[18px] shadow-card relative">
       <div className="flex justify-between gap-6 flex-wrap items-start mb-6">
         <Tabs
           tabs={tabs}

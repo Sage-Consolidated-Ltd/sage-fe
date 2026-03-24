@@ -67,7 +67,7 @@ const Drawer = ({
           <>
             {/* Backdrop */}
             <motion.div
-              className="absolute inset-0 z-10 bg-[#1A202C]/25 backdrop-blur-sm"
+              className="fixed inset-0 z-10 bg-[#1A202C]/25 backdrop-blur-sm"
               variants={backdropVariants}
               initial="hidden"
               animate="visible"
@@ -77,7 +77,7 @@ const Drawer = ({
 
             {/* Drawer Panel */}
             <motion.div
-              className={`absolute top-0 bottom-0 z-50 bg-surface shadow-2xl flex flex-col ${
+              className={`fixed h-[600px] bottom-0 z-50 bg-surface shadow-2xl flex flex-col ${
                 position === "right" ? "right-0" : "left-0"
               }`}
               style={{ width, maxWidth: "100%" }}
