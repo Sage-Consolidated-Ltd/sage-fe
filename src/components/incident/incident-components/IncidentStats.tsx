@@ -1,5 +1,3 @@
-import { Info } from "lucide-react";
-import { TrendingDown, TrendingUp } from "lucide-react"; // Or use your custom icons
 import { InfoCIcon, ProgressIcon, ResolvedIcon } from "../../../utils/icons";
 
 interface StatCardProps {
@@ -21,7 +19,7 @@ const StatCard = ({
 
   return (
     <div
-      className={`bg-default py-4 px-5 rounded-t-sm border-b-4 ${borderColor}  min-w-[280px]`}
+      className={`bg-default py-3 px-5 rounded-t-sm border-b-4 ${borderColor} min-w-[250px]`}
     >
       <p className="text-text-secondary text-base font-medium mb-4">{title}</p>
       <div className="flex items-center gap-1">
@@ -91,7 +89,7 @@ const IncidentStats = ({ activeTab }: { activeTab: string }) => {
         />
 
         {/* Status Summary Card */}
-        <div className="bg-default p-5 rounded-t-sm border-b-4 border-text-muted flex-[1.5] min-w-[300px] flex flex-col justify-between">
+        <div className="bg-default p-5 rounded-t-sm border-b-4 border-text-muted flex-[1.5] max-w-[600px] flex flex-col justify-between">
           <div className="flex items-center gap-1 mb-4">
             <p className="text-text-secondary text-base leading-6 font-medium">
               Alerts by Status
@@ -100,34 +98,34 @@ const IncidentStats = ({ activeTab }: { activeTab: string }) => {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="flex items-center border-r pr-4">
+            <div className="flex items-center gap-1 border-r pr-4">
               <span className="text-text-secondary font-semibold text-[32px] leading-10 tracking-[-0.5%]">
                 77
               </span>
-              <div className="flex items-center">
-                <ProgressIcon className="text-text-secondary w-4 h-4" />
+              <div className="flex gap-0.5 items-center">
+                <ProgressIcon className="text-text-secondary w-4 h-4 -rotate-180" />
                 <span className="text-text-primary text-xs font-normal">
                   In Progress
                 </span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 border-r px-4">
+            <div className="flex items-center gap-1 border-r px-4">
               <span className="text-success font-semibold text-[32px] leading-10 tracking-[-0.5%]">
                 92
               </span>
-              <div className="flex items-center ">
-                <ResolvedIcon className="text-success w-4 h-4" />
+              <div className="flex gap-0.5 items-center ">
+                <ResolvedIcon className="text-success w-4 h-4 rotate-180" />
                 <span className="text-text-primary text-xs">Resolved</span>
               </div>
             </div>
 
             <div className="pl-4">
-              <div className="flex items-baseline gap-1">
-                <span className="text-3xl font-bold text-orange-600">
+              <div className="flex items-baseline">
+                <span className="leading-10 tracking-[-0.5%] font-semibold text-primary-hover text-[32px]">
                   2h 10m
                 </span>
-                <span className="text-[10px] text-gray-500 whitespace-nowrap">
+                <span className="text-xs text-text-primary font-normal">
                   Avg. triage time
                 </span>
               </div>
