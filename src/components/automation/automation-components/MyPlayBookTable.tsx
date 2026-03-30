@@ -7,16 +7,37 @@ import {
   type MyPlayBook,
 } from "../../../utils/myPlayBook";
 import Table from "../../../shared/Table";
-import { DisableIcon, MoreIcon, PauseIcon } from "../../../utils/icons";
+import {
+  CloneIcon,
+  DisableIcon,
+  EditIcon,
+  MoreIcon,
+  PauseIcon,
+  RunIcon,
+} from "../../../utils/icons";
+import Drawer from "../../props/Drawer";
+import Checkbox from "../../props/Checkbox";
+import {
+  StatusBadges,
+  type ExecutionHistory,
+  mockExecutionHistory,
+} from "../../../utils/PlayBookExcutionHistory";
 
 interface TableProps {
-  data?: any[];
+  data?: MyPlayBook[];
 }
 
 const MyPlayBookTable = ({ data = mockPlayBook }: TableProps) => {
-  const [selectedPlayBook, setSelectedPlayBook] = useState(false);
+  const [selectedPlayBook, setSelectedPlayBook] = useState<MyPlayBook | null>(
+    null,
+  );
   const navigate = useNavigate();
 
+  const handleIncidentQueueClick = () => {
+    navigate("/incidents-&-alerts");
+  };
+
+  // Main Table Columns
   const columns: ColumnDef<MyPlayBook>[] = [
     {
       key: "name",
@@ -32,7 +53,6 @@ const MyPlayBookTable = ({ data = mockPlayBook }: TableProps) => {
         <span className="text-text-secondary text-sm">{i.triggers}</span>
       ),
     },
-
     {
       key: "lastRun",
       header: "Last Run",
@@ -50,25 +70,31 @@ const MyPlayBookTable = ({ data = mockPlayBook }: TableProps) => {
     {
       key: "status",
       header: "Status",
-      cell: (i) => (
-        <div className="flex gap-2 items-center">
-          <StatusBadge status={i.status} />
-        </div>
-      ),
+      cell: (i) => <StatusBadge status={i.status} />,
     },
     {
       key: "action",
       header: "Actions",
-      cell: () => (
+      cell: (i) => (
         <div className="flex items-center gap-3">
-          <MoreIcon className="text-text-secondary cursor-pointer" />
-          <button className="cursor-pointer">
-            <PauseIcon className="text-warning cursor-pointer" />
-          </button>
-
           <button
-            onClick={() => setSelectedPlayBook(true)}
             className="cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedPlayBook(i);
+            }}
+          >
+            <MoreIcon className="text-text-secondary" />
+          </button>
+          <button
+            className="cursor-pointer"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <PauseIcon className="text-warning" />
+          </button>
+          <button
+            className="cursor-pointer"
+            onClick={(e) => e.stopPropagation()}
           >
             <DisableIcon className="text-error" />
           </button>
@@ -77,8 +103,38 @@ const MyPlayBookTable = ({ data = mockPlayBook }: TableProps) => {
     },
   ];
 
+  // Drawer Table Columns (Execution History)
+  const historyColumns: ColumnDef<ExecutionHistory>[] = [
+    {
+      key: "DateTime",
+      header: "Date & Time",
+      cell: (i) => (
+        <span className="text-text-secondary text-sm">{i.DateTime}</span>
+      ),
+    },
+    {
+      key: "ExecutionID",
+      header: "Execution ID",
+      cell: (i) => (
+        <span className="text-text-secondary text-sm">{i.ExecutionID}</span>
+      ),
+    },
+    {
+      key: "Statuss",
+      header: "Status",
+      cell: (i) => <StatusBadges Statuss={i.Statuss} />,
+    },
+    {
+      key: "Result",
+      header: "Result",
+      cell: (i) => (
+        <span className="text-text-secondary text-sm">{i.Result}</span>
+      ),
+    },
+  ];
+
   return (
-    <div>
+    <>
       <Table<MyPlayBook>
         data={data}
         columns={columns}
@@ -86,7 +142,120 @@ const MyPlayBookTable = ({ data = mockPlayBook }: TableProps) => {
         showCheckboxes={true}
         className="bg-transparent"
       />
-    </div>
+
+      <Drawer
+        isOpen={!!selectedPlayBook}
+        onClose={() => setSelectedPlayBook(null)}
+        width="700px"
+      >
+        <Drawer.Header title="Suspicious Login Response" />
+
+        <Drawer.Body>
+          <div className="flex flex-col gap-6">
+            {/* ======= */}
+            <div className="flex flex-col gap-3">
+              {/* Status Row */}
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-text-secondary text-base">
+                  Status:
+                </span>
+                <span className="bg-[#34A853] text-white px-3 py-1 rounded-lg text-xs font-medium">
+                  Active
+                </span>
+              </div>
+
+              {/* Type Row */}
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-text-primary text-base">
+                  Type:
+                </span>
+                <span className="text-text-secondary text-base font-normal">
+                  Adaptive
+                </span>
+              </div>
+            </div>
+            {/* Trigger & Overrides */}
+            <div className="flex flex-col gap-3">
+              <p className="text-xl font-normal">Trigger & Overrides</p>
+              <div className="flex gap-1.5 items-center pl-7 text-xs">
+                <li className="text-base text-text-primary">
+                  Current triggers:
+                </li>
+                <p className="bg-hover-light px-2 py-0.5 rounded-xl">
+                  Failed logins 5 within 10 mins
+                </p>
+                <p className="bg-hover-light px-2 py-0.5 rounded-xl">
+                  Login from unusual geolocation
+                </p>
+              </div>
+              {/* ======== */}
+              <div className="flex gap-1.5 items-center pl-7 text-xs">
+                <li className="text-base text-text-primary">Overrides:</li>
+                <p className="bg-hover-light px-2 py-0.5 rounded-xl">
+                  Pause execution on weekends
+                </p>
+                <p className="bg-hover-light px-2 py-0.5 rounded-xl">
+                  Require analyst approval for admin accounts
+                </p>
+              </div>
+            </div>
+
+            {/* Execution History Table - FIXED HERE */}
+            <div className="flex flex-col gap-3">
+              <p className="text-xl font-normal">Execution History</p>
+
+              <Table<ExecutionHistory>
+                data={mockExecutionHistory}
+                columns={historyColumns}
+                showHeader={false}
+                className="bg-transparent"
+              />
+            </div>
+
+            {/* Linked Rules */}
+            <div className="flex flex-col gap-3">
+              <div>
+                <p className="text-xl text-text-primary">Linked Rules</p>
+                <p className="text-text-secondary text-sm">
+                  Linked rules use data from this feed to enrich detection and
+                  correlation logic.
+                </p>
+              </div>
+              <Checkbox label="Simulated phishing + privilege escalation attempt" />
+              <Checkbox label="Unauthorized Login" />
+            </div>
+          </div>
+        </Drawer.Body>
+
+        <Drawer.Footer>
+          <div className="flex flex-col">
+            <div
+              className="underline text-primary-hover mb-5 cursor-pointer"
+              onClick={handleIncidentQueueClick}
+            >
+              <p>View Full Incident in Incident Queue</p>
+            </div>
+
+            <div className="flex items-center gap-6">
+              {[
+                { Icon: RunIcon, label: "Run Now" },
+                { Icon: EditIcon, label: "Edit" },
+                { Icon: CloneIcon, label: "Clone" },
+                { Icon: DisableIcon, label: "Disable" },
+              ].map(({ Icon, label }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-1 cursor-pointer hover:opacity-80"
+                >
+                  <Icon className="text-primary-hover" />
+                  <p className="text-sm font-medium">{label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Drawer.Footer>
+      </Drawer>
+    </>
   );
 };
 

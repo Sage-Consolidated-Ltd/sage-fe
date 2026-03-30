@@ -42,8 +42,9 @@ const AllPlayBooks = () => {
       <div className="flex gap-2 items-center w-full justify-end flex-end">
         <div>
           <Button
-            paddingX="py-3"
-            paddingY="px-6"
+            paddingX="px-4"
+            paddingY="py-2"
+            height="min-h-[0px]"
             icon={<PlusIcon className="text-white" />}
           >
             NEW PLAYBOOK
@@ -51,8 +52,9 @@ const AllPlayBooks = () => {
         </div>
         <div>
           <Button
-            paddingX="py-3"
-            paddingY="px-6"
+            paddingX="px-4"
+            paddingY="py-2"
+            height="min-h-[0px]"
             variant="white"
             icon={<ImportIcon className="text-text-secondary" />}
           >
@@ -64,8 +66,9 @@ const AllPlayBooks = () => {
         </div>
         <div>
           <Button
-            paddingX="py-3"
-            paddingY="px-6"
+            paddingX="px-4"
+            paddingY="py-2"
+            height="min-h-[0px]"
             variant="white"
             icon={<ExportIcon className="text-text-secondary" />}
           >
