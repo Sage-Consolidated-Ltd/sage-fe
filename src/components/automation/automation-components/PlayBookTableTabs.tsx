@@ -1,6 +1,8 @@
 import React from "react";
 import Tabs from "../../props/Tabs";
 import {
+  ChevronLeft1Icon,
+  ChevronRight1Icon,
   CloneIcon,
   DeleteIcon,
   DisableIcon,
@@ -84,6 +86,16 @@ const PlayBookTableTabs = ({
                 ))}
               </>
             )}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-input-border">
+            <ChevronLeft1Icon />
+            <ChevronRight1Icon />
+          </div>
+          <div>
+            <p>Showing 1-4 of 1</p>
           </div>
         </div>
       </div>

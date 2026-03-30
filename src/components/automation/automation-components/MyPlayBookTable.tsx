@@ -227,16 +227,16 @@ const MyPlayBookTable = ({ data = mockPlayBook }: TableProps) => {
           </div>
         </Drawer.Body>
 
-        <Drawer.Footer>
+        <div className="px-8 pb-10">
           <div className="flex flex-col">
             <div
-              className="underline text-primary-hover mb-5 cursor-pointer"
+              className="underline text-primary-hover mb-8 cursor-pointer"
               onClick={handleIncidentQueueClick}
             >
               <p>View Full Incident in Incident Queue</p>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-10">
               {[
                 { Icon: RunIcon, label: "Run Now" },
                 { Icon: EditIcon, label: "Edit" },
@@ -253,7 +253,7 @@ const MyPlayBookTable = ({ data = mockPlayBook }: TableProps) => {
               ))}
             </div>
           </div>
-        </Drawer.Footer>
+        </div>
       </Drawer>
     </>
   );
