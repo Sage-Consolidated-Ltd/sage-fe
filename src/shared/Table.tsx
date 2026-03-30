@@ -41,7 +41,7 @@ const Table = <T extends TableData>({
   const useTableStore = useMemo(
     () => createTableStore<T>({ data, columns, pageSize }),
     // Empty dependency array - store should be created once
-    []
+    [],
   );
 
   const {
@@ -101,8 +101,8 @@ const Table = <T extends TableData>({
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter((item) =>
         Object.values(item).some((value) =>
-          String(value).toLowerCase().includes(query)
-        )
+          String(value).toLowerCase().includes(query),
+        ),
       );
     }
 
@@ -181,7 +181,7 @@ const Table = <T extends TableData>({
                         checked={
                           paginatedData.length > 0 &&
                           paginatedData.every((item) =>
-                            selectedRows.has(item.id)
+                            selectedRows.has(item.id),
                           )
                         }
                         onChange={handleSelectAll}

@@ -1,10 +1,8 @@
-import { Settings, ShieldAlert } from "lucide-react";
 import Table from "../../../shared/Table";
 import {
   AiChatIcon,
   ChevronRight1Icon,
   DetailsIcon,
-  PlusIcon,
   ShieldIcon,
   XIcon,
 } from "../../../utils/icons";

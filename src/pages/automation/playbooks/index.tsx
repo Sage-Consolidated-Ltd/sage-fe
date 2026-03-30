@@ -1,13 +1,12 @@
 import React from "react";
-import PlaybookEditor from "../../../components/PlaybookEditor";
+import PlayBooksPage from "../../../components/automation/PlayBooksPage";
 
-const Playbook = () => {
+const index = () => {
   return (
     <div>
-      Playbook
-      <PlaybookEditor />
+      <PlayBooksPage />
     </div>
   );
 };
 
-export default Playbook;
+export default index;
