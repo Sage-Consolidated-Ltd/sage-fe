@@ -21,9 +21,9 @@ const StatCard = ({
 
   return (
     <div
-      className={`bg-default py-4 px-5 rounded-t-sm border-b-4 ${borderColor}  min-w-[280px]`}
+      className={`bg-default py-4 px-5 rounded-t-sm border-b-4 ${borderColor}  w-[288px]`}
     >
-      <p className="text-text-secondary text-base font-medium mb-4">{title}</p>
+      <p className="text-text-secondary text-base font-medium mb-2">{title}</p>
       <div className="flex items-center gap-1">
         <span
           className={`text-[32px] font-semibold leading-10 tracking-[-0.5%] ${colorClass}`}
@@ -38,6 +38,51 @@ const StatCard = ({
             From last 24hr
           </span>
         </span>
+      </div>
+    </div>
+  );
+};
+
+const StatusSummaryCard = () => {
+  return (
+    <div className="bg-default py-4 px-5 rounded-t-sm border-b-4 border-[#B08968] flex items-center gap-6 min-w-[500px]">
+      {/* Title Section */}
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-1.5 text-text-secondary text-base font-medium">
+          Alerts by Status <Info size={16} className="text-info-hover" />
+        </div>
+
+        <div className="flex items-center gap-6">
+          {/* In Progress */}
+          <div className="flex items-center gap-2">
+            <span className="text-[32px] font-semibold text-text-primary">
+              77
+            </span>
+            <div className="flex items-center gap-1 text-text-secondary text-sm">
+              <TrendingDown size={16} />
+              <span>In Progress</span>
+            </div>
+          </div>
+          <div className="h-10 w-[1px] bg-gray-200" /> {/* Divider */}
+          {/* Resolved */}
+          <div className="flex items-center gap-2">
+            <span className="text-[32px] font-semibold text-success">92</span>
+            <div className="flex items-center gap-1 text-text-secondary text-sm">
+              <TrendingUp size={16} />
+              <span>Resolved</span>
+            </div>
+          </div>
+          <div className="h-10 w-[1px] bg-gray-200" /> {/* Divider */}
+          {/* Avg Triage Time */}
+          <div className="flex items-center gap-2">
+            <span className="text-[32px] font-semibold text-primary-hover">
+              2h 10m
+            </span>
+            <span className="text-text-secondary text-sm whitespace-nowrap">
+              Avg. triage time
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -91,49 +136,7 @@ const IncidentStats = ({ activeTab }: { activeTab: string }) => {
         />
 
         {/* Status Summary Card */}
-        <div className="bg-default p-5 rounded-t-sm border-b-4 border-text-muted flex-[1.5] min-w-[300px] flex flex-col justify-between">
-          <div className="flex items-center gap-1 mb-4">
-            <p className="text-text-secondary text-base leading-6 font-medium">
-              Alerts by Status
-            </p>
-            <InfoCIcon />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center border-r pr-4">
-              <span className="text-text-secondary font-semibold text-[32px] leading-10 tracking-[-0.5%]">
-                77
-              </span>
-              <div className="flex items-center">
-                <ProgressIcon className="text-text-secondary w-4 h-4" />
-                <span className="text-text-primary text-xs font-normal">
-                  In Progress
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 border-r px-4">
-              <span className="text-success font-semibold text-[32px] leading-10 tracking-[-0.5%]">
-                92
-              </span>
-              <div className="flex items-center ">
-                <ResolvedIcon className="text-success w-4 h-4" />
-                <span className="text-text-primary text-xs">Resolved</span>
-              </div>
-            </div>
-
-            <div className="pl-4">
-              <div className="flex items-baseline gap-1">
-                <span className="text-3xl font-bold text-orange-600">
-                  2h 10m
-                </span>
-                <span className="text-[10px] text-gray-500 whitespace-nowrap">
-                  Avg. triage time
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <StatusSummaryCard />
       </div>
     </div>
   );

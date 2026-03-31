@@ -49,6 +49,7 @@ export interface InputProps {
   error?: boolean | "";
   searchPosition?: "left" | "right";
   maxLength?: number;
+  height?: string;
 }
 
 export interface RadioButtonProps {

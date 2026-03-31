@@ -1,12 +1,10 @@
-import React from "react";
-import PlaybookEditor from "../../../components/PlaybookEditor";
+import PlaybookPage from "../../../components/automation/playbook/PlaybookPage";
 
 const Playbook = () => {
   return (
-    <div>
-      Playbook
-      <PlaybookEditor />
-    </div>
+    <>
+      <PlaybookPage />
+    </>
   );
 };
 

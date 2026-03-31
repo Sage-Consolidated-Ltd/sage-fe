@@ -98,7 +98,8 @@ const ContactsTable: React.FC<ContactsTableProps> = ({
       pageSize={10}
       showHeader={true}
       showFooter={true}
-      showCheckboxes={false}
+      showCheckboxes={true}
+      onSelectionChange={(selectedIds) => console.log("Selected:", selectedIds)}
       onRowClick={(contact) => console.log("Clicked:", contact)}
       className="bg-white rounded-3xl tab-shadow py-6"
       isLoading={isLoading}

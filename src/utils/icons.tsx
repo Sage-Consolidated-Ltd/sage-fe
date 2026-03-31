@@ -1625,6 +1625,7 @@ export const InfoCIcon: React.FC<{ className?: string }> = ({ className }) => (
     />
   </svg>
 );
+
 export const ResolvedIcon: React.FC<{ className?: string }> = ({
   className,
 }) => (
@@ -1660,6 +1661,25 @@ export const ProgressIcon: React.FC<{ className?: string }> = ({
       d="M17.6282 5.60938L11.3232 11.9144C11.0059 12.2317 10.8472 12.3903 10.6643 12.4498C10.5033 12.5021 10.33 12.5021 10.169 12.4498C9.98608 12.3903 9.82742 12.2317 9.5101 11.9144L7.31678 9.72105C6.99946 9.40373 6.8408 9.24507 6.65784 9.18562C6.49691 9.13333 6.32355 9.13333 6.16262 9.18562C5.97967 9.24507 5.82101 9.40373 5.50368 9.72105L1.60254 13.6222M17.6282 5.60938H12.0192M17.6282 5.60938V11.2183"
       stroke="currentColor"
       stroke-width="1.60256"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const ZapIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    className={className}
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9.75014 1.5L3.07023 9.51589C2.80863 9.82982 2.67782 9.98678 2.67582 10.1193C2.67409 10.2346 2.72544 10.3442 2.81508 10.4167C2.9182 10.5 3.12252 10.5 3.53117 10.5H9.00014L8.25014 16.5L14.93 8.48411C15.1917 8.17018 15.3225 8.01322 15.3245 7.88065C15.3262 7.76541 15.2748 7.65577 15.1852 7.58333C15.0821 7.5 14.8778 7.5 14.4691 7.5H9.00014L9.75014 1.5Z"
+      stroke="currentColor"
+      stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />

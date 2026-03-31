@@ -21,6 +21,7 @@ const Input: React.FC<InputProps> = ({
   disabled = false,
   error = false,
   maxLength, // Add this
+  height = "h-10", // Default height
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [selection, setSelection] = useState<{
@@ -145,7 +146,7 @@ const Input: React.FC<InputProps> = ({
             ${error ? "bg-surface border border-primary shadow-error" : ""}
             ${getInputPadding()}
             /* Vertical centering styles */
-            h-10
+            ${height}
             leading-10
             ${isMasked ? "font-normal tracking-[0.2em]" : "leading-[22px] py-2"}
           `}

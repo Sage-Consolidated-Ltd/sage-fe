@@ -1,4 +1,13 @@
-import React, { useState, useRef, useCallback } from "react";
+import { useCallback, useRef, useState } from "react";
+import {
+  CheckIcon,
+  ChevronRightIcon,
+  CircleCheckIcon,
+  PlusIcon,
+  XIcon,
+  ZapIcon,
+} from "../../../utils/icons";
+import Button from "../../props/Button";
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -38,6 +47,9 @@ import {
   PanelRight,
   GripVertical,
 } from "lucide-react";
+import Input from "../../props/Input";
+import Toggle from "../../props/Toggle";
+import TextArea from "../../props/TextArea";
 
 // --- Types ---
 type NodeType =
@@ -585,7 +597,7 @@ const CanvasArea = () => {
   );
 
   return (
-    <div className="absolute inset-0 bg-gray-50" ref={reactFlowWrapper}>
+    <div className=" absolute inset-0 bg-default" ref={reactFlowWrapper}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -599,117 +611,124 @@ const CanvasArea = () => {
         fitViewOptions={{ padding: 0.2 }}
         proOptions={{ hideAttribution: true }}
       >
-        <Background
+        {/* <Background
           variant={BackgroundVariant.Dots}
           gap={20}
           size={1}
           color="#cbd5e1"
+        /> */}
+        <Controls
+          position="top-left"
+          className="bg-white border-gray-200 shadow-md [&>button]:bg-white [&>button]:border-gray-200 flex-row! top-0! left-4!"
         />
-        <Controls className="bg-white border-gray-200 shadow-md [&>button]:bg-white [&>button]:border-gray-200" />
       </ReactFlow>
     </div>
   );
 };
 
-// --- Main App ---
-
-export default function PlaybookEditorEdit() {
+const PlaybookEditorPage = () => {
   const [isLeftOpen, setIsLeftOpen] = useState(true);
   const [isRightOpen, setIsRightOpen] = useState(true);
-
   return (
-    <div className="w-full h-screen bg-white flex flex-col overflow-hidden font-sans text-gray-900">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4 shrink-0 z-30 relative">
+    <div className="w-full h-screen flex flex-col overflow-hidden">
+      {/* header section */}
+      <div className="bg-surface px-[30px] py-[27px] shadow-card rounded-[18px] flex flex-col gap-y-6 mb-6">
         <div className="flex items-center justify-between mb-4">
-          <div>
-            <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
-              <span>Automation</span>
-              <ChevronRight size={14} />
-              <span className="text-gray-900 font-medium">Playbook Editor</span>
-            </div>
-            <h1 className="text-xl font-bold text-gray-900">Playbook Editor</h1>
-            <p className="text-sm text-gray-500 mt-0.5">
-              Design adaptive playbooks to automate security responses.
-            </p>
+          <div className="flex items-center gap-1 font-medium">
+            <span className="text-text-muted">Automation</span>
+            <span>/</span>
+            <span className="text-text-primary">Playbook Editor</span>
           </div>
-          <button className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm">
-            <Plus size={18} /> Create Playbook
-          </button>
         </div>
 
-        <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-3">
-            <label className="block text-xs font-medium text-gray-500 mb-1.5">
-              Playbook Name
-            </label>
-            <input
-              type="text"
-              defaultValue="Block Malicious IPs"
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-            />
+        <div className="flex items-center justify-between gap-6 flex-wrap">
+          <div className="max-w-[654px]">
+            <h1 className="text-xl text-text-primary">Playbook Editor</h1>
+            <p className="text-xs text-text-secondary mt-0.5">
+              Design adaptive or generative playbooks to automate security
+              responses. Build visually with the flowchart editor or define
+              logic directly in the code editor.
+            </p>
           </div>
-          <div className="col-span-3">
-            <label className="block text-xs font-medium text-gray-500 mb-1.5">
-              Choose a Trigger
-            </label>
-            <select className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 appearance-none">
-              <option>Detection Rule Trigger</option>
-            </select>
-          </div>
-          <div className="col-span-2">
-            <label className="block text-xs font-medium text-gray-500 mb-1.5">
-              Status
-            </label>
-            <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
-              <span className="text-sm text-gray-700 font-medium">Active</span>
-            </div>
-          </div>
-          <div className="col-span-4">
-            <label className="block text-xs font-medium text-gray-500 mb-1.5">
-              Description
-            </label>
-            <input
-              type="text"
-              defaultValue="Automatically block external IPs after repeated failed login attempts."
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-            />
+
+          {/* create playbook button */}
+          <div>
+            <Button icon={<PlusIcon className="text-white w-6 h-6" />}>
+              CREATE PLAYBOOK
+            </Button>
           </div>
         </div>
       </div>
 
-      {/* Toolbar */}
-      <div className="h-12 bg-white border-b border-gray-200 px-4 flex items-center justify-between shrink-0 z-30 relative">
-        <div className="flex items-center gap-6">
-          <span className="text-sm font-semibold text-gray-900 border-b-2 border-orange-500 pb-3 pt-2.5">
-            Workflow Builder
-          </span>
-          <div className="flex items-center gap-4 text-sm text-gray-500">
-            <button className="flex items-center gap-1.5 hover:text-gray-900">
-              <Save size={16} /> Save
-            </button>
-            <button className="flex items-center gap-1.5 hover:text-gray-900">
-              <Play size={16} /> Run Test
-            </button>
-            <button className="flex items-center gap-1.5 hover:text-red-600 text-red-500">
-              <X size={16} /> Cancel
-            </button>
+      {/* playbook forms and actions */}
+      <div className="bg-surface px-[30px] py-[27px] shadow-card rounded-t-[18px] flex flex-col gap-y-6">
+        <div className="grid grid-cols-3 gap-4">
+          {/* playbook name */}
+          <div>
+            <Input
+              name="playbookName"
+              placeholder="Playbook Name"
+              type="text"
+              label="Playbook Name"
+            />
+          </div>
+          <div>
+            <Input
+              name="playbookName"
+              placeholder="Playbook Name"
+              type="text"
+              label="Playbook Name"
+            />
+          </div>
+          <div>
+            <p className="mb-4">Status</p>
+            <Toggle label="Active" />
+          </div>
+
+          <div className="">
+            <TextArea
+              name="description"
+              label="Description"
+              placeholder="Enter description..."
+              rows={3}
+              resize="none"
+            />
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setIsLeftOpen(!isLeftOpen)}
-            className={`p-2 rounded-lg transition-colors ${isLeftOpen ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-100"}`}
-          >
-            <PanelLeft size={18} />
-          </button>
-          <button
-            onClick={() => setIsRightOpen(!isRightOpen)}
-            className={`p-2 rounded-lg transition-colors ${isRightOpen ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-100"}`}
-          >
-            <PanelRight size={18} />
-          </button>
+
+        {/* Toolbar */}
+        <div className=" bg-white flex items-center justify-between shrink-0 z-30 relative">
+          <div className="flex items-center gap-6">
+            <span className="font-medium leading-6 text-text-primary border-b-2 border-primary py-[5px] px-[19px]">
+              Workflow Builder
+            </span>
+            <div className="flex items-center text-text-secondary font-medium">
+              <button className="flex items-center gap-1 py-[5px] px-2 cursor-pointer">
+                <CircleCheckIcon className="w-5 h-5 text-success" /> Save
+              </button>
+              <button className="flex items-center gap-1 px-2 border-l border-r border-border cursor-pointer">
+                <ZapIcon className="w-[18px] h-[18px] text-primary-hover" /> Run
+                Test
+              </button>
+              <button className="flex items-center gap-1 py-[5px] px-2 cursor-pointer">
+                <XIcon className="w-[18px] h-[18px] text-error" /> Cancel
+              </button>
+            </div>
+          </div>
+          {/* <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsLeftOpen(!isLeftOpen)}
+              className={`p-2 rounded-lg transition-colors ${isLeftOpen ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-100"}`}
+            >
+              <PanelLeft size={18} />
+            </button>
+            <button
+              onClick={() => setIsRightOpen(!isRightOpen)}
+              className={`p-2 rounded-lg transition-colors ${isRightOpen ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-100"}`}
+            >
+              <PanelRight size={18} />
+            </button>
+          </div> */}
         </div>
       </div>
 
@@ -741,4 +760,6 @@ export default function PlaybookEditorEdit() {
       </div>
     </div>
   );
-}
+};
+
+export default PlaybookEditorPage;
