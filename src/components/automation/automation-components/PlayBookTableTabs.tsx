@@ -7,7 +7,7 @@ import {
   DeleteIcon,
   DisableIcon,
   EditIcon,
-  RunIcon,
+  ZapIcon,
 } from "../../../utils/icons";
 import MyPlayBookTable from "./MyPlayBookTable";
 
@@ -37,7 +37,7 @@ const PlayBookTableTabs = ({
   return (
     <div className="bg-surface py-[27px] px-[30px] rounded-[18px] shadow-card relative ">
       <div className="flex justify-between gap-6 flex-wrap items-start mb-6">
-        <div className="flex items-start gap-5">
+        <div className="flex items-center gap-5 flex-wrap">
           <Tabs
             tabs={tabs}
             activeTab={activeTab}
@@ -51,7 +51,7 @@ const PlayBookTableTabs = ({
             {activeTab === "my-playbook" ? (
               <>
                 {[
-                  { Icon: RunIcon, label: "Run Now" },
+                  { Icon: ZapIcon, label: "Run Now" },
                   { Icon: EditIcon, label: "Edit", onClick: handleEditClick },
                   { Icon: CloneIcon, label: "Clone" },
                   { Icon: DisableIcon, label: "Disable" },

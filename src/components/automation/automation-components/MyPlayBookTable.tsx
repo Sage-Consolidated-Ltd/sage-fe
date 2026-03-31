@@ -13,7 +13,7 @@ import {
   EditIcon,
   MoreIcon,
   PauseIcon,
-  RunIcon,
+  ZapIcon,
 } from "../../../utils/icons";
 import Drawer from "../../props/Drawer";
 import Checkbox from "../../props/Checkbox";
@@ -140,6 +140,7 @@ const MyPlayBookTable = ({ data = mockPlayBook }: TableProps) => {
         columns={columns}
         showHeader={false}
         showCheckboxes={true}
+        showFooter={false}
         className="bg-transparent"
       />
 
@@ -238,7 +239,7 @@ const MyPlayBookTable = ({ data = mockPlayBook }: TableProps) => {
 
             <div className="flex items-center gap-10">
               {[
-                { Icon: RunIcon, label: "Run Now" },
+                { Icon: ZapIcon, label: "Run Now" },
                 { Icon: EditIcon, label: "Edit" },
                 { Icon: CloneIcon, label: "Clone" },
                 { Icon: DisableIcon, label: "Disable" },
