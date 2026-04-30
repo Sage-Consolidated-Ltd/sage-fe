@@ -239,16 +239,16 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
 
       {/* Corner frame accents */}
       <div className="absolute top-0 left-0 w-32 h-32 z-10">
-        <div className="absolute top-8 left-8 w-16 h-[1px] bg-gradient-to-r from-orange-300/40 to-transparent" />
-        <div className="absolute top-8 left-8 w-[1px] h-16 bg-gradient-to-b from-orange-300/40 to-transparent" />
+        <div className="absolute top-8 left-8 w-16 h-px bg-linear-to-r from-orange-300/40 to-transparent" />
+        <div className="absolute top-8 left-8 w-px h-16 bg-linear-to-b from-orange-300/40 to-transparent" />
       </div>
       <div className="absolute top-0 right-0 w-32 h-32 rotate-90 z-10">
-        <div className="absolute top-8 left-8 w-16 h-[1px] bg-gradient-to-r from-orange-300/40 to-transparent" />
-        <div className="absolute top-8 left-8 w-[1px] h-16 bg-gradient-to-b from-orange-300/40 to-transparent" />
+        <div className="absolute top-8 left-8 w-16 h-px bg-linear-to-r from-orange-300/40 to-transparent" />
+        <div className="absolute top-8 left-8 w-px h-16 bg-linear-to-b from-orange-300/40 to-transparent" />
       </div>
       <div className="absolute bottom-0 left-0 w-32 h-32 -rotate-90 z-10">
-        <div className="absolute top-8 left-8 w-16 h-[1px] bg-gradient-to-r from-orange-300/40 to-transparent" />
-        <div className="absolute top-8 left-8 w-[1px] h-16 bg-gradient-to-b from-orange-300/40 to-transparent" />
+        <div className="absolute top-8 left-8 w-16 h-px bg-linear-to-r from-orange-300/40 to-transparent" />
+        <div className="absolute top-8 left-8 w-px h-16 bg-linear-to-b from-orange-300/40 to-transparent" />
       </div>
 
       {/* Main content */}
@@ -259,13 +259,13 @@ const SplashScreen: React.FC<SplashScreenProps> = ({
         {/* Text with typing cursor */}
         <div className="relative">
           <div className="flex items-center gap-3">
-            <div className="w-[1px] h-5 bg-gradient-to-b from-orange-400 to-orange-200 animate-pulse" />
+            <div className="w-px h-5 bg-linear-to-b from-orange-400 to-orange-200 animate-pulse" />
             <span className="text-sm text-gray-500 font-light tracking-wide">
               Preparing your security brain...
             </span>
           </div>
-          <div className="absolute -bottom-3 left-0 right-0 h-[1px]">
-            <div className="h-full w-24 bg-gradient-to-r from-transparent via-orange-300/50 to-transparent mx-auto" />
+          <div className="absolute -bottom-3 left-0 right-0 h-px">
+            <div className="h-full w-24 bg-linear-to-r from-transparent via-orange-300/50 to-transparent mx-auto" />
           </div>
         </div>
       </div>
