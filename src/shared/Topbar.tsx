@@ -7,18 +7,17 @@ import {
   SearchIcon,
   StarsIcon,
   WorldIcon,
+  XIcon,
 } from "../utils/icons";
 import Button from "../components/props/Button";
 import WhatsNewModal from "../components/topbar/topbar-modals/WhatsNewModal";
 import NotificationsModal from "../components/topbar/topbar-modals/NotificationModal";
 import SearchModal from "../components/topbar/topbar-modals/SearchModal";
 import AiTypeModal from "../components/topbar/topbar-modals/AiTypeModal";
+import { useSidebarStore } from "../store/sidebarStore";
+import { MenuIcon } from "lucide-react";
 
-interface SidebarProps {
-  toggleSidebar: () => void;
-}
-
-const Topbar = ({ toggleSidebar }: SidebarProps) => {
+const Topbar = () => {
   const [isWhatsNewOpen, setIsWhatsNewOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -28,6 +27,8 @@ const Topbar = ({ toggleSidebar }: SidebarProps) => {
     top: number;
     left: number;
   } | null>(null);
+
+  const { toggleSidebar, isMobile } = useSidebarStore();
 
   const whatsNewRef = useRef<HTMLDivElement>(null);
   const notificationsRef = useRef<HTMLButtonElement>(null);
@@ -42,7 +43,7 @@ const Topbar = ({ toggleSidebar }: SidebarProps) => {
       const rect = searchContainerRef.current.getBoundingClientRect();
       setModalPosition({
         top: rect.bottom + window.scrollY,
-        left: rect.left + window.scrollX - 200, // Adjust based on modal width
+        left: rect.left + window.scrollX - 200,
       });
       setIsSearchOpen(true);
       setIsWhatsNewOpen(false);
@@ -63,7 +64,6 @@ const Topbar = ({ toggleSidebar }: SidebarProps) => {
       setIsSearchOpen(false);
     }
     if (e.key === "Enter" && searchQuery.trim()) {
-      // Handle search submission
       console.log("Searching for:", searchQuery);
       setIsSearchOpen(false);
     }
@@ -138,10 +138,20 @@ const Topbar = ({ toggleSidebar }: SidebarProps) => {
 
   return (
     <>
-      <div className="sticky top-0 w-full py-3 px-6 h-[91px] flex items-center bg-[#F6F7FC] shadow-top-bar">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex-1 flex items-center gap-x-4">
-            <div className="w-fit">
+      <div className="w-full py-3 px-4 md:px-6 h-[91px] flex items-center bg-[#F6F7FC] shadow-top-bar">
+        <div className="flex items-center justify-between w-full gap-3">
+          {/* Left: Hamburger + Global View + Search */}
+          <div className="flex-1 flex items-center gap-x-4 min-w-0">
+            {/* Mobile sidebar toggle - visible below md (768px) */}
+            <button
+              onClick={toggleSidebar}
+              className="md:hidden shrink-0 w-10 h-10 rounded-xl bg-[#4444440F] grid place-items-center cursor-pointer hover:bg-[#4444441F] transition-colors"
+              aria-label="Toggle sidebar"
+            >
+              <MenuIcon className="text-[#1E1A19]" />
+            </button>
+
+            <div className="w-fit hidden sm:block">
               <Button
                 iconPosition="right"
                 textSize="text-sm"
@@ -153,13 +163,18 @@ const Topbar = ({ toggleSidebar }: SidebarProps) => {
                 Global View
               </Button>
             </div>
-            <div ref={searchContainerRef} className="w-[40%] relative">
+
+            {/* Search - full width on mobile, 40% on md+ */}
+            <div
+              ref={searchContainerRef}
+              className="w-full md:w-[40%] relative"
+            >
               <div className="px-4 bg-white border border-[#0300011F] rounded-xl search-shadow w-full flex items-center gap-2">
-                <SearchIcon className="text-[#4A3F3C]" />
+                <SearchIcon className="text-[#4A3F3C] shrink-0" />
                 <input
                   ref={searchInputRef}
                   type="text"
-                  className="flex-1 bg-transparent outline-none text-[#4A3F3C] py-3"
+                  className="flex-1 bg-transparent outline-none text-[#4A3F3C] py-3 min-w-0"
                   placeholder="Search..."
                   value={searchQuery}
                   onChange={handleSearchChange}
@@ -168,7 +183,7 @@ const Topbar = ({ toggleSidebar }: SidebarProps) => {
                 />
                 {searchQuery && (
                   <button
-                    className="text-gray-400 hover:text-gray-600"
+                    className="text-gray-400 hover:text-gray-600 shrink-0"
                     onClick={() => {
                       setSearchQuery("");
                       setIsSearchOpen(false);
@@ -182,28 +197,28 @@ const Topbar = ({ toggleSidebar }: SidebarProps) => {
           </div>
 
           {/* Right side buttons */}
-          <div className="flex items-center gap-4">
-            {/* What's New */}
+          <div className="flex items-center gap-2 md:gap-4 shrink-0">
+            {/* What's New - hidden on small mobile */}
             <div
               ref={whatsNewRef}
-              className="flex items-center gap-0.5 cursor-pointer hover:opacity-80 transition-opacity"
+              className="hidden sm:flex items-center gap-0.5 cursor-pointer hover:opacity-80 transition-opacity"
               onClick={handleWhatsNewClick}
             >
               <StarsIcon className="text-primary" />
-              <p className="leading-[100%] tracking-[2%] text-text-primary">
+              <p className="leading-[100%] tracking-[2%] text-text-primary hidden lg:block">
                 What's new
               </p>
             </div>
 
-            {/* World */}
-            <button className="rounded-xl bg-[#4444440F] w-10 aspect-square grid place-items-center cursor-pointer hover:bg-[#4444441F] transition-colors">
+            {/* World - hidden on small mobile */}
+            <button className="hidden sm:grid rounded-xl bg-[#4444440F] w-10 aspect-square place-items-center cursor-pointer hover:bg-[#4444441F] transition-colors">
               <WorldIcon className="text-[#1E1A19]" />
             </button>
 
             {/* Notification */}
             <button
               ref={notificationsRef}
-              className="rounded-xl bg-[#4444440F] w-[66px] h-10 flex items-center justify-center gap-1 cursor-pointer hover:bg-[#4444441F] transition-colors"
+              className="rounded-xl bg-[#4444440F] min-w-11 md:min-w-[66px] h-10 flex items-center justify-center gap-1 cursor-pointer hover:bg-[#4444441F] transition-colors px-2 md:px-0"
               onClick={handleNotificationsClick}
             >
               <NotificationIcon className="text-[#1E1A19]" />
@@ -212,18 +227,18 @@ const Topbar = ({ toggleSidebar }: SidebarProps) => {
               </div>
             </button>
 
-            {/* Divider */}
-            <div className="w-px h-[17px] bg-[#DAD3CE]"></div>
+            {/* Divider - hidden on small mobile */}
+            <div className="hidden sm:block w-px h-[17px] bg-[#DAD3CE]"></div>
 
             {/* AI Category */}
             <button
               ref={aiTypeRef}
               onClick={handleAiTypeClick}
-              className="rounded-xl bg-[#4444440F] w-16 h-10 flex items-center justify-center gap-1 cursor-pointer hover:bg-[#4444441F] transition-colors"
+              className="rounded-xl bg-[#4444440F] w-10 md:w-16 h-10 flex items-center justify-center gap-1 cursor-pointer hover:bg-[#4444441F] transition-colors"
             >
               <AiChatIcon className="text-[#1E1A19]" />
-              <div className="w-px h-[11px] bg-[#DAD3CE]"></div>
-              <AngleDownIcon className="text-[#1E1A19]" />
+              <div className="hidden md:block w-px h-[11px] bg-[#DAD3CE]"></div>
+              <AngleDownIcon className="hidden md:block text-[#1E1A19]" />
             </button>
           </div>
         </div>

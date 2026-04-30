@@ -36,7 +36,7 @@ const ScoreGauge = ({
   // Gradient stops for orange → yellow → green
   const gradientId = useMemo(
     () => `scoreGradient-${Math.random().toString(36).substr(2, 9)}`,
-    []
+    [],
   );
 
   return (
