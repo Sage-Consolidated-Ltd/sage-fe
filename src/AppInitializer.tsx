@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import SplashScreen from "./components/splash/SplashScreen";
 import AppRoutes from "./routes/AppRoutes";
+import { ToastContainer } from "./shared/ToastContainer";
 
 const AppInitializer: React.FC = () => {
   const [isReady, setIsReady] = useState(false);
@@ -30,6 +31,7 @@ const AppInitializer: React.FC = () => {
       <div className={showSplash ? "invisible" : "visible"}>
         <AppRoutes />
       </div>
+      <ToastContainer />
     </>
   );
 };

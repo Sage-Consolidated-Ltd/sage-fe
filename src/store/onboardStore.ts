@@ -7,6 +7,7 @@ interface Profile {
   email: string;
   industry: string;
   timeZone: string;
+  fullName: string;
 }
 
 interface Touched {
@@ -56,6 +57,7 @@ const initialState = {
     email: "",
     industry: "",
     timeZone: "",
+    fullName: "",
   },
   password: "",
   confirmPassword: "",

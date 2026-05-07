@@ -1,4 +1,4 @@
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import { SidebarRoutes } from "./SidebarRoutes";
 // import { AuthGuard } from "../layouts/AuthGuard";
@@ -63,6 +63,8 @@ const AppRoutes = () => (
     </Route>
 
     <Route path="*" element={<NotFound />} />
+    {/* Redirect root to dashboard */}
+    <Route path="/" element={<Navigate to="/dashboard" replace />} />
   </Routes>
 );
 
