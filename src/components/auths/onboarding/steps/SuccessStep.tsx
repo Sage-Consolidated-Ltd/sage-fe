@@ -1,24 +1,37 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // or your router
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { formContentVariants } from "../../../../utils/variants";
 import { getImageSrc } from "../../../../utils/imageUtils";
 import Loader from "../../../../shared/Loader";
+import Button from "../../../props/Button";
 
-const SuccessStep = () => {
+interface SuccessStepProps {
+  autoNavigate?: boolean;
+  redirectDelay?: number;
+  redirectPath?: string;
+}
+
+const SuccessStep = ({
+  autoNavigate = true,
+  redirectDelay = 5000,
+  redirectPath = "/dashboard",
+}: SuccessStepProps) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate("/dashboard");
-    }, 5000); // 5 seconds delay
+    if (!autoNavigate) return;
 
-    return () => clearTimeout(timer); // Cleanup
-  }, [navigate]);
+    const timer = setTimeout(() => {
+      navigate(redirectPath);
+    }, redirectDelay);
+
+    return () => clearTimeout(timer);
+  }, [autoNavigate, redirectDelay, redirectPath, navigate]);
 
   return (
     <motion.div
-      key="step2-form"
+      key="step4-form"
       variants={formContentVariants}
       initial="initial"
       animate="animate"
@@ -34,16 +47,34 @@ const SuccessStep = () => {
           You're all set!
         </h1>
         <p className="text-center text-text-secondary mt-1.5">
-          Your security brain is online. you will be redirected to your
-          environment.
+          Your security brain is online. We'll start monitoring your environment
+          in real-time.
         </p>
       </div>
 
       <Loader size="62px" />
 
       <p className="text-primary text-center">
-        Preparing your security brain...
+        {autoNavigate
+          ? "Preparing your security brain..."
+          : "Your security brain is ready!"}
       </p>
+
+      {/* Manual navigation buttons — shown when autoNavigate is false */}
+      {!autoNavigate && (
+        <div className="flex flex-col gap-3 w-full max-w-[320px]">
+          <Button type="button" onClick={() => navigate(redirectPath)}>
+            GO TO DASHBOARD
+          </Button>
+          <Button
+            type="button"
+            variant="white"
+            onClick={() => navigate("/invite")}
+          >
+            INVITE TEAMMATES
+          </Button>
+        </div>
+      )}
     </motion.div>
   );
 };

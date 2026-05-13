@@ -136,8 +136,7 @@ export const useOnboardStore = create<OnboardState>()((set) => ({
       return { resendTimer: state.resendTimer - 1 };
     }),
 
-  startResendTimer: () => {
-    set({ resendTimer: 60, isResending: true });
-    setTimeout(() => set({ isResending: false }), 1000);
-  },
+  startResendTimer: () => set({ resendTimer: 60, isResending: true }),
+
+  stopResending: () => set({ isResending: false }),
 }));

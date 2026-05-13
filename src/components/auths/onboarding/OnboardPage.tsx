@@ -20,7 +20,7 @@ const OnboardPage = () => {
       case 3:
         return <VerificationStep />;
       case 4:
-        return <SuccessStep />;
+        return <SuccessStep autoNavigate={false} />;
       default:
         return <ProfileStep />;
     }

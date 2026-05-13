@@ -19,6 +19,8 @@ export const endpoints = {
     login: "/auth/login",
     logout: "/auth/logout",
     register: "/auth/register",
+    verifyEmail: "/auth/send-verification-email",
+    emailVerify: "/auth/verify-email",
   },
   company: {
     invite: "/company/invite",

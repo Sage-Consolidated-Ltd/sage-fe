@@ -7,6 +7,9 @@ import { CheckIcon } from "../../../../utils/icons";
 import { formContentVariants } from "../../../../utils/variants";
 import { useOnboardStore } from "../../../../store/onboardStore";
 import Input from "../../../props/Input";
+import { useVerify, useVerifyEmail } from "../../../../api/auth";
+import { useToastStore } from "../../../../store/toastStore";
+import Loader from "../../../../shared/Loader";
 
 const VerificationStep = () => {
   const {
@@ -24,7 +27,12 @@ const VerificationStep = () => {
     startResendTimer,
     nextStep,
     prevStep,
+    profile,
   } = useOnboardStore();
+
+  const { mutate: sendVerificationEmail, isPending: isSending } = useVerify();
+  const { mutate: verifyEmail, isPending: isVerifying } = useVerifyEmail();
+  const addToast = useToastStore((s) => s.add);
 
   // Timer effect
   useEffect(() => {
@@ -44,6 +52,61 @@ const VerificationStep = () => {
         return securityKeyVerified;
       default:
         return false;
+    }
+  };
+
+  const handleSendCode = () => {
+    sendVerificationEmail(
+      { email: profile.email },
+      {
+        onSuccess: (data) => {
+          addToast("success", data.message || "Verification code sent!");
+          startResendTimer();
+        },
+        onError: (err: Error) => {
+          addToast("error", err.message || "Failed to send verification code.");
+        },
+      },
+    );
+  };
+
+  const handleVerify = () => {
+    if (!isValid() || isVerifying) return;
+
+    switch (verificationMethod) {
+      case "email": {
+        verifyEmail(
+          { token: emailCode },
+          {
+            onSuccess: (data) => {
+              addToast(
+                "success",
+                data.message || "Email verified successfully!",
+              );
+              nextStep();
+            },
+            onError: (err: Error) => {
+              addToast("error", err.message || "Invalid verification code.");
+            },
+          },
+        );
+        break;
+      }
+
+      case "authenticator": {
+        // TODO: Wire up TOTP verification endpoint when ready
+        addToast("success", "Authenticator verified!");
+        nextStep();
+        break;
+      }
+
+      case "securityKey": {
+        if (securityKeyVerified) {
+          addToast("success", "Security key verified!");
+          nextStep();
+        }
+        break;
+      }
     }
   };
 
@@ -86,7 +149,7 @@ const VerificationStep = () => {
       <VerificationOption
         id="email-verify"
         label="Email Verification (default)"
-        desc="Send a one-time code to your email address: admin@acmecyber.com"
+        desc={`Send a one-time code to your email address: ${profile.email}`}
         checked={verificationMethod === "email"}
         onChange={() => setVerificationMethod("email")}
       >
@@ -97,18 +160,34 @@ const VerificationStep = () => {
             exit={{ opacity: 0, height: 0 }}
             className="ml-7 flex gap-3"
           >
-            <Button type="button" variant="primary">
-              Send Code
-            </Button>
-            <Input
-              name="emailCode"
-              type="text"
-              placeholder="Enter code"
-              value={emailCode}
-              onChange={(e) => setEmailCode(e.target.value)}
-              maxLength={6}
-              className="flex-1"
-            />
+            <div className="w-[150px]">
+              <Button
+                type="button"
+                variant="primary"
+                onClick={handleSendCode}
+                disabled={isSending || resendTimer > 0}
+                textSize="text-sm"
+                font="font-normal"
+              >
+                {isSending ? (
+                  <Loader />
+                ) : resendTimer > 0 ? (
+                  "Sent"
+                ) : (
+                  "Send Code"
+                )}
+              </Button>
+            </div>
+            <div className="w-full">
+              <Input
+                name="emailCode"
+                type="text"
+                placeholder="Enter"
+                value={emailCode}
+                onChange={(e) => setEmailCode(e.target.value)}
+                maxLength={6}
+              />
+            </div>
           </motion.div>
         )}
       </VerificationOption>
@@ -222,27 +301,31 @@ const VerificationStep = () => {
 
       {/* Actions */}
       <div className="mt-2 flex gap-2">
-        <Button type="button" onClick={nextStep} disabled={!isValid()}>
-          VERIFY & CONTINUE
+        <Button
+          type="button"
+          onClick={handleVerify}
+          disabled={!isValid() || isVerifying}
+        >
+          {isVerifying ? "VERIFYING..." : "VERIFY & CONTINUE"}
         </Button>
       </div>
 
       {/* Resend Timer */}
       {verificationMethod === "email" && (
         <div className="text-center">
-          {resendTimer > 0 ? (
+          {resendTimer > 0 && (
             <p className="text-sm text-text-secondary">
               Resend in{" "}
               <span className="text-primary font-medium">
                 00:{resendTimer.toString().padStart(2, "0")}
               </span>
             </p>
-          ) : (
+          )}
+          {resendTimer === 0 && !isSending && (
             <button
               type="button"
-              onClick={startResendTimer}
-              disabled={isResending}
-              className="text-sm text-primary font-medium hover:underline disabled:opacity-50"
+              onClick={handleSendCode}
+              className="text-sm text-primary font-medium hover:underline text-left"
             >
               Resend code
             </button>
