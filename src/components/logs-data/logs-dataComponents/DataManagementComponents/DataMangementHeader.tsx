@@ -3,7 +3,6 @@ import Button from "../../../props/Button";
 import { MonitorIcon } from "../../../../utils/icons";
 
 const DataMangementHeader = ({ activeTab }: { activeTab: string }) => {
-  // Configuration object for dynamic content based on the activeTab ID
   const headerContent: Record<string, { title: string; desc: string }> = {
     data: {
       title: "Data Normalization",

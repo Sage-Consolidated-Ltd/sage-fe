@@ -3,7 +3,6 @@ import Tabs from "../../../props/Tabs";
 
 import SampleLogsViewer from "./SampleLogsViewer";
 import ParsersTable from "./ParsersTable";
-import { ChevronLeft1Icon, ChevronRight1Icon } from "../../../../utils/icons";
 
 interface ParserTableTabsProps {
   activeTab: string;
@@ -29,16 +28,6 @@ const ParsersTableTabs = ({
             variant="underline"
             className="p-2"
           />
-        </div>
-
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 text-input-border">
-            <ChevronLeft1Icon />
-            <ChevronRight1Icon />
-          </div>
-          <div>
-            <p>Showing 1-4 of 1</p>
-          </div>
         </div>
       </div>
 
