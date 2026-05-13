@@ -1,21 +1,50 @@
+import { useEffect } from "react";
 import { motion } from "motion/react";
 import { Select } from "../../../props/Select";
 import Button from "../../../props/Button";
 
 import { formContentVariants } from "../../../../utils/variants";
 import { useOnboardStore } from "../../../../store/onboardStore";
-import { getTimeZones, industries } from "../../../../utils/timezone";
+import { useIndustries } from "../../../../api/company";
+import { getTimeZones } from "../../../../utils/timezone";
 import Input from "../../../props/Input";
+import { SquaredInfoIcon } from "../../../../utils/icons";
 
 const ProfileStep = () => {
   const { profile, updateProfile, nextStep } = useOnboardStore();
+  const { data: industries, isLoading: industriesLoading } = useIndustries();
   const timeZones = getTimeZones();
+
+  // Auto-detect user timezone on mount
+  useEffect(() => {
+    if (profile.timeZone) return; // Don't override if already set
+
+    try {
+      const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      // Check if detected timezone exists in our options
+      const match = timeZones.find(
+        (tz) => tz.value === detected || tz.label.includes(detected),
+      );
+      if (match) {
+        updateProfile("timeZone", match.value);
+      }
+    } catch {
+      // Silently fail if Intl API not supported
+    }
+  }, []); // Run once on mount
 
   const isValid =
     profile.companyName &&
     profile.email &&
     profile.industry &&
-    profile.timeZone;
+    profile.timeZone &&
+    profile.fullName;
+
+  const industryOptions =
+    industries?.data?.map((industry) => ({
+      value: industry.id,
+      label: industry.name,
+    })) || [];
 
   return (
     <motion.div
@@ -36,7 +65,7 @@ const ProfileStep = () => {
       </div>
 
       <Input
-        name="name"
+        name="companyName"
         type="text"
         placeholder="Acme Inc."
         label="Company Name"
@@ -45,25 +74,16 @@ const ProfileStep = () => {
         onChange={(e) => updateProfile("companyName", e.target.value)}
       />
 
-      <Input
-        name="email"
-        type="email"
-        placeholder="admin@acmecyber.com"
-        label="Email"
-        required
-        value={profile.email}
-        onChange={(e) => updateProfile("email", e.target.value)}
-      />
-
       <Select
         label="Industry"
-        options={industries}
+        options={industryOptions}
         placeholder="Select an industry"
         iconVariant="upDown"
         showInfo
         infoTooltip="What sector does your company operate in?"
         value={profile.industry}
         onChange={(value) => updateProfile("industry", value)}
+        disabled={industriesLoading}
       />
 
       <Select
@@ -75,7 +95,38 @@ const ProfileStep = () => {
         infoTooltip="Used for scheduling and notifications"
         value={profile.timeZone}
         onChange={(value) => updateProfile("timeZone", value)}
+        searchable
+        searchPlaceholder="Search time zones..."
       />
+
+      <div className="border border-border rounded-[18px] p-4 space-y-4">
+        <Input
+          name="email"
+          type="email"
+          placeholder="admin@acmecyber.com"
+          label="Email"
+          required
+          value={profile.email}
+          onChange={(e) => updateProfile("email", e.target.value)}
+        />
+
+        <Input
+          name="fullName"
+          type="text"
+          placeholder="First Last"
+          label="Full Name"
+          required
+          value={profile.fullName}
+          onChange={(e) => updateProfile("fullName", e.target.value)}
+        />
+
+        <div className="flex items-center gap-1.5 text-warning font-fira-code">
+          <SquaredInfoIcon className="w-6 h-6" />
+          <p className="text-xs leading-4 tracking-[0.5%] max-w-[324px]">
+            You'll be the primary admin for this workspace
+          </p>
+        </div>
+      </div>
 
       <div>
         <Button type="button" onClick={nextStep} disabled={!isValid}>

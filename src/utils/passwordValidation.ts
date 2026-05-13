@@ -1,7 +1,9 @@
 export interface PasswordRequirements {
   length: boolean;
+  upper: boolean;
+  lower: boolean;
+  digit: boolean;
   special: boolean;
-  caseSensitive: boolean;
 }
 
 export interface PasswordStrength {
@@ -10,24 +12,41 @@ export interface PasswordStrength {
   colorClass: string;
 }
 
+// Backend only accepts these special characters: @$!%*?&
+const ALLOWED_SPECIAL_CHARS = "@$!%*?&";
+const SPECIAL_REGEX = new RegExp(
+  `[${ALLOWED_SPECIAL_CHARS.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")}]`,
+);
+
 export const validatePasswordRequirements = (
   password: string,
 ): PasswordRequirements => {
-  const specialChars = (
-    password.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []
+  const specialCount = (
+    password.match(new RegExp(`[${ALLOWED_SPECIAL_CHARS}]`, "g")) || []
   ).length;
 
+  // Check for invalid characters (anything not alphanumeric or in allowed set)
+  const hasInvalidChars = /[^a-zA-Z0-9@$!%*?&]/.test(password);
+
   return {
-    length: password.length >= 12,
-    special: specialChars >= 2,
-    caseSensitive: true, // informational
+    length: password.length >= 8,
+    upper: /[A-Z]/.test(password),
+    lower: /[a-z]/.test(password),
+    digit: /[0-9]/.test(password),
+    special: specialCount >= 1 && !hasInvalidChars,
   };
 };
 
 export const isPasswordValid = (
   requirements: PasswordRequirements,
 ): boolean => {
-  return requirements.length && requirements.special;
+  return (
+    requirements.length &&
+    requirements.upper &&
+    requirements.lower &&
+    requirements.digit &&
+    requirements.special
+  );
 };
 
 export const calculatePasswordStrength = (
@@ -37,25 +56,27 @@ export const calculatePasswordStrength = (
     return { score: 0, label: "", colorClass: "bg-gray-200" };
   }
 
+  const req = validatePasswordRequirements(password);
+  if (!isPasswordValid(req)) {
+    return { score: 0, label: "", colorClass: "bg-gray-200" };
+  }
+
   let score = 0;
   const length = password.length;
-  const specialCount = (
-    password.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []
-  ).length;
-  const hasUpper = /[A-Z]/.test(password);
-  const hasLower = /[a-z]/.test(password);
-  const hasNumber = /[0-9]/.test(password);
+  const specialCount = (password.match(/[@$!%*?&]/g) || []).length;
 
-  // Length contribution
+  // Base valid = 1
+  score += 1;
+
+  // Length bonuses
   if (length >= 12) score += 1;
   if (length >= 16) score += 1;
 
-  // Complexity contribution
-  const variety = [hasUpper, hasLower, hasNumber, specialCount >= 2].filter(
+  // Variety bonus
+  const variety = [req.upper, req.lower, req.digit, specialCount >= 2].filter(
     Boolean,
   ).length;
-  if (variety >= 3) score += 1;
-  if (variety >= 4 && length >= 14) score += 1;
+  if (variety >= 4) score += 1;
 
   const finalScore = Math.min(score, 4);
 
