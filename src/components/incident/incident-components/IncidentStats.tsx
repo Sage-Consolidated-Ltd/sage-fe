@@ -1,4 +1,4 @@
-import { InfoCIcon, ProgressIcon, ResolvedIcon } from "../../../utils/icons";
+import { DownTrendIcon, InfoCIcon, TrendIcon } from "../../../utils/icons";
 
 interface StatCardProps {
   title: string;
@@ -57,20 +57,20 @@ const StatusSummaryCard = () => {
               77
             </span>
             <div className="flex items-center gap-1 text-text-secondary text-sm">
-              <ProgressIcon className="text-text-secondary w-4 h-4 -rotate-180" />
+              <DownTrendIcon className="text-text-secondary w-4 h-4 " />
               <span>In Progress</span>
             </div>
           </div>
-          <div className="h-10 w-[1px] bg-gray-200" /> {/* Divider */}
+          <div className="h-10 w-px bg-gray-200" /> {/* Divider */}
           {/* Resolved */}
           <div className="flex items-center gap-2">
             <span className="text-[32px] font-semibold text-success">92</span>
             <div className="flex items-center gap-1 text-text-secondary text-sm">
-              <ResolvedIcon className="text-success w-4 h-4 rotate-180" />
+              <TrendIcon className="text-success w-4 h-4 " />
               <span>Resolved</span>
             </div>
           </div>
-          <div className="h-10 w-[1px] bg-gray-200" /> {/* Divider */}
+          <div className="h-10 w-px bg-gray-200" /> {/* Divider */}
           {/* Avg Triage Time */}
           <div className="flex items-center gap-2">
             <span className="text-[32px] font-semibold text-primary-hover">

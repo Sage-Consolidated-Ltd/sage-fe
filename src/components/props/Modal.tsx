@@ -86,7 +86,10 @@ const Header = ({
   return (
     <div className="flex items-center justify-between border-b border-gray-100 py-2">
       {title ? (
-        <h2 className="text-[20px] text-text-primary">{title}</h2>
+        <div>
+          <h2 className="text-[20px] text-text-primary">{title}</h2>
+          <p className="text-text-secondary text-sm pt-2">{children}</p>
+        </div>
       ) : (
         children
       )}

@@ -65,8 +65,6 @@ Available icons for use in the application.
 - `DeviceIcon`
 - `ActionTakenIcon`
 - `InfoCIcon`
-- `ProgressIcon`
-- `ResolvedIcon`
 - `CloneIcon`
 - `DisableIcon`
 - `RunIcon`
@@ -82,6 +80,12 @@ Available icons for use in the application.
 - `AchieveIcon`
 - `IntelIcon`
 - `ViewIcon`
+- `Plus1Icon`
+- `ToolsIcon`
+- `Notification1Icon`
+- `SampleIcon`
+- `ForwardIcon`
+- `UploadIcon`
 
 ## Usage Example
 

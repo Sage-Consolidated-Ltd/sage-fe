@@ -129,7 +129,7 @@ const SampleLogsViewer = () => {
         {/* ======================= */}
 
         {/* ======================== */}
-        <div className="flex flex-col gap-3 bg-default py-[27px] px-[30px] rounded-[18px] relative shadow-shadow-card z-50 h-[396px]">
+        <div className="flex flex-col gap-3 bg-surface py-[27px] px-[30px] rounded-[18px] relative shadow-card h-[396px]">
           <div className="flex items-center justify-between">
             <p className="text-2xl text-text-secondary">AI Errors Highlight</p>
             <MoreIcon />
