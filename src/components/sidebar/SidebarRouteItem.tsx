@@ -36,7 +36,7 @@ const SidebarRouteItem = ({
 
   const getCountForRoute = (
     routeName: string,
-    counts: Record<string, number>
+    counts: Record<string, number>,
   ) => {
     const countKey = routeName.toLowerCase().replace(/[^a-z]/g, "");
     return counts[countKey] || null;
@@ -131,7 +131,7 @@ const SidebarRouteItem = ({
                     className={`rounded-lg py-0.5 px-1.5 text-xs text-white font-medium ${
                       location.pathname === route.path ||
                       route.children?.some(
-                        (child) => location.pathname === child.path
+                        (child) => location.pathname === child.path,
                       )
                         ? "bg-primary"
                         : "bg-[#24222099]"
@@ -159,7 +159,7 @@ const SidebarRouteItem = ({
                 className={`${
                   location.pathname === route.path ||
                   route.children?.some(
-                    (child) => location.pathname === child.path
+                    (child) => location.pathname === child.path,
                   )
                     ? "text-primary"
                     : "text-[#24222099]"
