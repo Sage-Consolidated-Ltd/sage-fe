@@ -7,6 +7,7 @@ import Login from "../pages/auths/login";
 import Onboard from "../pages/auths/onboarding";
 import ProfileSettings from "../pages/settings/profile";
 import IncidentDetails from "../pages/incident/view-details";
+import IngestionDataQualityPage from "../components/logs-data/ingestionHealth/IngestionDataQualityPage";
 
 const toElement = (Comp?: React.LazyExoticComponent<React.ComponentType>) =>
   Comp ? <Comp /> : <Outlet />;
@@ -59,6 +60,10 @@ const AppRoutes = () => (
       <Route
         path="/incidents-&-alerts/view-details"
         element={<IncidentDetails />}
+      />
+      <Route
+        path="/logs-&-data/data-quality"
+        element={<IngestionDataQualityPage />}
       />
     </Route>
 

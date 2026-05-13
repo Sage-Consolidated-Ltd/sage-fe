@@ -7,6 +7,8 @@ import {
 } from "../../../../utils/parserLibrary";
 import {
   ChevronDown1Icon,
+  ChevronLeft1Icon,
+  ChevronRight1Icon,
   DisableIcon,
   EditIcon,
   ExportIcon,
@@ -172,26 +174,37 @@ const ParsersTable = ({ data = mockParser }: TableProps) => {
       </div>
 
       <div>
-        <div className="pb-5 flex items-center gap-4">
-          <p className="text-text-primary text-base leading-6">
-            Parser Library
-          </p>
-          <>
-            {[
-              { Icon: EditIcon, label: "Edit" },
-              { Icon: ZapIcon, label: "Test " },
-              { Icon: ExportIcon, label: "Export" },
-              { Icon: DisableIcon, label: "Disable" },
-            ].map(({ Icon, label }) => (
-              <div
-                key={label}
-                className="flex items-center gap-2 cursor-pointer hover:opacity-80"
-              >
-                <Icon className="text-primary-hover" />
-                <p>{label}</p>
-              </div>
-            ))}
-          </>
+        <div className="pb-5 flex items-center justify-between">
+          <div className=" flex items-center gap-4">
+            <p className="text-text-primary text-base leading-6">
+              Parser Library
+            </p>
+            <>
+              {[
+                { Icon: EditIcon, label: "Edit" },
+                { Icon: ZapIcon, label: "Test " },
+                { Icon: ExportIcon, label: "Export" },
+                { Icon: DisableIcon, label: "Disable" },
+              ].map(({ Icon, label }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-2 cursor-pointer hover:opacity-80"
+                >
+                  <Icon className="text-primary-hover" />
+                  <p>{label}</p>
+                </div>
+              ))}
+            </>
+          </div>
+          <div className="flex items-center gap-2 justify-end">
+            <div className="flex items-center gap-2 text-input-border">
+              <ChevronLeft1Icon />
+              <ChevronRight1Icon />
+            </div>
+            <div>
+              <p>Showing 1-4 of 1</p>
+            </div>
+          </div>
         </div>
         <Table<Parser>
           data={data}
