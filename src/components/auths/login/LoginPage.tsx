@@ -9,6 +9,9 @@ import AuthFooter from "../AuthFooter";
 import MFAVerification from "./MFAVerifcation";
 import SuccessStep from "../onboarding/steps/SuccessStep";
 import AuthSideItem from "./AuthSideItem";
+import { useLogin } from "../../../api/auth";
+import { useToastStore } from "../../../store/toastStore";
+import Loader from "../../../shared/Loader";
 
 const heroData = {
   login: {
@@ -27,15 +30,29 @@ const heroData = {
   },
 };
 const LoginPage = () => {
+  const { mutate: handleLogin, isPending: isLoading } = useLogin();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
   const [step, setStep] = useState<"login" | "mfa" | "success">("login");
+  const addToast = useToastStore((s) => s.add);
 
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStep("mfa");
+    handleLogin(
+      { email: email, password: password },
+      {
+        onSuccess: (data) => {
+          addToast("success", data.message || "Login Successful!");
+          setStep("success");
+        },
+        onError: (err: Error) => {
+          addToast("error", err.message || "Failing to Login");
+        },
+      },
+    );
+    // setStep("mfa");
   };
 
   const handleMFAVerify = (code: string) => {
@@ -122,7 +139,9 @@ const LoginPage = () => {
                     </a>
                   </div>
 
-                  <Button type="submit">LOGIN</Button>
+                  <Button type="submit" disabled={isLoading}>
+                    {isLoading ? <Loader size="20px" /> : "LOGIN"}
+                  </Button>
 
                   {/* Divider */}
                   <div className="relative my-4">
