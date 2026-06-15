@@ -35,7 +35,6 @@ const LoginPage = () => {
 
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStep("mfa");
   };
 
   const handleMFAVerify = (code: string) => {

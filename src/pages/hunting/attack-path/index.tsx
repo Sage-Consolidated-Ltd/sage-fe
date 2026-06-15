@@ -1,7 +1,12 @@
 import React from "react";
+import AttackPathPage from "../../../components/hunting/attack-path/AttackPathPage";
 
 const AttackPathVisualizer = () => {
-  return <div>AttackPathVisualizer</div>;
+  return (
+    <div>
+      <AttackPathPage />
+    </div>
+  );
 };
 
 export default AttackPathVisualizer;

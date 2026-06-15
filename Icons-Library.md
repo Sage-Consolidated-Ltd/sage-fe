@@ -86,6 +86,13 @@ Available icons for use in the application.
 - `SampleIcon`
 - `ForwardIcon`
 - `UploadIcon`
+- `Search1Icon`
+- `ScheduleIcon`
+- `Share2Icon`
+- `Share1Icon`
+- `Details1Icon`
+- `FiltersIcon`
+- `InfoDownIcon`
 
 ## Usage Example
 
