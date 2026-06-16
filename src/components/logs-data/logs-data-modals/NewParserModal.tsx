@@ -100,12 +100,7 @@ const NewParserModal = ({ isOpen, setIsOpen }: NewParserModalProps) => {
                 />
               </div>
 
-              <div className="flex items-center gap-2 text-warning mt-1 ">
-                <SquaredInfoIcon />
-                <p className="font-fira-code text-xs">
-                  Need help? <span className="underline">See AI guide →</span>
-                </p>
-              </div>
+               text-text-secondary
             </div>
             {/* General Info */}
 

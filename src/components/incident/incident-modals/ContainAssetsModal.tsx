@@ -107,7 +107,7 @@ const ContainAssetsModal = ({ isOpen, setIsOpen }: ContainAssetsModalProps) => {
           {/* Optional Additional Actions */}
           <>
             <div className="gap-2 flex flex-col">
-              <p className="text-text-primary pb-1.5 text-[16px] font-normal">
+              <p className="text-text-primary pb-1.5 text-base font-normal">
                 Optional Additional Actions
               </p>
               <Checkbox label="Notify asset owner" />

@@ -1,4 +1,4 @@
-// Dynamically import all images from the assets folder using Vite's import.meta.glob
+ // Dynamically import all images from the assets folder using Vite's import.meta.glob
 const images = import.meta.glob("/src/assets/*.(png|jpe?g|svg|jpg)", {
   eager: true,
   import: "default",

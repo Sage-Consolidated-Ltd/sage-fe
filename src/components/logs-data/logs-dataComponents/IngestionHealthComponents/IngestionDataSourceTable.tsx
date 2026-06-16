@@ -21,7 +21,7 @@ import Input from "../../../props/Input";
 import Dropdown from "../../../props/Dropdown";
 import Drawer from "../../../props/Drawer";
 import Button from "../../../props/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 
 interface TableProps {
   data?: IngestionDataSource[];

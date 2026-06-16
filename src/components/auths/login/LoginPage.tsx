@@ -40,19 +40,6 @@ const LoginPage = () => {
 
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleLogin(
-      { email: email, password: password },
-      {
-        onSuccess: (data) => {
-          addToast("success", data.message || "Login Successful!");
-          setStep("success");
-        },
-        onError: (err: Error) => {
-          addToast("error", err.message || "Failing to Login");
-        },
-      },
-    );
-    // setStep("mfa");
   };
 
   const handleMFAVerify = (code: string) => {
