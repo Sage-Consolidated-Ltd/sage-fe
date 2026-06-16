@@ -18,7 +18,7 @@ const SucessAddDataModal = ({ isOpen, setIsOpen }: SucessAddDataModal) => {
   };
   return (
     <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} maxWidth="1000px">
-      <Modal.Header title="" />
+      <Modal.Header title="." />
 
       <Modal.Body>
         <div className="w-full flex flex-col items-center justify-center gap-y-2">

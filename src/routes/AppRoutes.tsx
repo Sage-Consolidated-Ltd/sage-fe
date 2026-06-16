@@ -8,6 +8,7 @@ import Onboard from "../pages/auths/onboarding";
 import ProfileSettings from "../pages/settings/profile";
 import IncidentDetails from "../pages/incident/view-details";
 import IngestionDataQualityPage from "../components/logs-data/ingestionHealth/IngestionDataQualityPage";
+import NewQueryPage from "../components/hunting/advanced-logSearch/NewQueryPage";
 
 const toElement = (Comp?: React.LazyExoticComponent<React.ComponentType>) =>
   Comp ? <Comp /> : <Outlet />;
@@ -64,6 +65,10 @@ const AppRoutes = () => (
       <Route
         path="/logs-&-data/data-quality"
         element={<IngestionDataQualityPage />}
+      />
+      <Route
+        path="/hunting/advanced-log-search/new-query"
+        element={<NewQueryPage />}
       />
     </Route>
 

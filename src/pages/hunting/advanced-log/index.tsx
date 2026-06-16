@@ -1,7 +1,12 @@
 import React from "react";
+import AdvancedLogSearchPage from "../../../components/hunting/advanced-logSearch/AdvancedLogSearchPage";
 
 const AdvancedLogSearch = () => {
-  return <div>AdvancedLogSearch</div>;
+  return (
+    <div>
+      <AdvancedLogSearchPage />
+    </div>
+  );
 };
 
 export default AdvancedLogSearch;
