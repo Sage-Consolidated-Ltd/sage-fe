@@ -1,9 +1,7 @@
 import { useRef } from "react";
 import { useSidebarStore } from "../../store/sidebarStore";
-import Button from "../../components/props/Button";
 import { ChevronUpDownIcon, ThemesIcon } from "../../utils/icons";
 import Toggle from "../../components/props/Toggle";
-import { getImageSrc } from "../../utils/imageUtils";
 import ProfileModal from "./ProfileModal";
 import { useUserProfile } from "../../api/profile";
 import { getInitials } from "../../utils/getInitials";
@@ -16,7 +14,7 @@ const OtherSettings = () => {
     closeProfileModal,
   } = useSidebarStore();
   const profileButtonRef = useRef<HTMLButtonElement>(null);
-  const { data: profile, isLoading, error, isError } = useUserProfile();
+  const { data: profile } = useUserProfile();
 
   const handleProfileIconClick = () => {
     if (profileButtonRef.current) {

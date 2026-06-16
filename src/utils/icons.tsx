@@ -2094,3 +2094,64 @@ export const UploadIcon: React.FC<{ className?: string }> = ({ className }) => (
     />
   </svg>
 );
+
+export const BoxChartIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    className={className}
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M17 12H15L13 17L11 7L9 12H7M5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3Z"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const BookIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    className={className}
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M10 2V10L13 7L16 10V2M4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5ZM4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const BoxPlusIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    className={className}
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M6 2.25H4.65C3.80992 2.25 3.38988 2.25 3.06901 2.41349C2.78677 2.5573 2.5573 2.78677 2.41349 3.06901C2.25 3.38988 2.25 3.80992 2.25 4.65V6M6 15.75H4.65C3.80992 15.75 3.38988 15.75 3.06901 15.5865C2.78677 15.4427 2.5573 15.2132 2.41349 14.931C2.25 14.6101 2.25 14.1901 2.25 13.35V12M15.75 6V4.65C15.75 3.80992 15.75 3.38988 15.5865 3.06901C15.4427 2.78677 15.2132 2.5573 14.931 2.41349C14.6101 2.25 14.1901 2.25 13.35 2.25H12M15.75 12V13.35C15.75 14.1901 15.75 14.6101 15.5865 14.931C15.4427 15.2132 15.2132 15.4427 14.931 15.5865C14.6101 15.75 14.1901 15.75 13.35 15.75H12M9 12.75L9 5.25M5.25 9H12.75"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);

@@ -1,8 +1,12 @@
+import { useUserProfile } from "../../../../api/profile";
+import { getInitials } from "../../../../utils/getInitials";
 import { EditIcon } from "../../../../utils/icons";
 import { getImageSrc } from "../../../../utils/imageUtils";
 
 const ProfileHeader = () => {
   const highGrainSvg = `data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E`;
+
+  const { data: profile } = useUserProfile();
 
   return (
     <div className="flex flex-col items-center w-full relative">
@@ -26,12 +30,15 @@ const ProfileHeader = () => {
       {/* --- AVATAR SECTION (Overlap) --- */}
       <div className="absolute -bottom-28 flex flex-col items-center">
         <div className="relative w-[157px] aspect-square rounded-full p-1 bg-[linear-gradient(139.7deg,#FF9000_4.46%,#6344E7_55.5%,#FA4F19_106.54%)]">
-          <div className="w-full h-full rounded-full bg-white overflow-hidden">
-            <img
+          <div className="w-full h-full rounded-full bg-white overflow-hidden grid place-items-center">
+            {/* <img
               src={getImageSrc("avatar.png")}
               className="w-full h-full object-cover"
               alt="User avatar"
-            />
+            /> */}
+            <span className="font-semibold text-7xl text-text-secondary">
+              {getInitials(profile?.data?.full_name)}
+            </span>
           </div>
 
           {/* edit button */}
@@ -44,9 +51,9 @@ const ProfileHeader = () => {
 
         <div className="mt-3 text-center">
           <h1 className="text-[20px] font-bold text-text-primary">
-            Andrew Smith
+            {profile?.data?.full_name}
           </h1>
-          <p className="text-text-secondary mt-3">a.smith@acmecorp.com</p>
+          <p className="text-text-secondary mt-3">{profile?.data?.email}</p>
         </div>
       </div>
     </div>

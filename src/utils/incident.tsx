@@ -1,3 +1,5 @@
+import type { ConnectedSource } from "../components/integration/security-integration/security-components/ConnectedTable";
+
 export type SeverityLevel = 1 | 2 | 3 | 4;
 
 export interface Incident {
@@ -104,3 +106,71 @@ export const StatusBadge = ({ status }: { status: Incident["status"] }) => {
     </span>
   );
 };
+
+// Placeholder icons - replace with your actual icon components
+const AzureIcon = () => (
+  <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M5.483 21.3H24L14.025 4.013l-3.038 8.347 5.836 6.938L5.483 21.3zM13.23 2.7L6.105 8.677 0 19.253h5.505l7.73-16.553z" />
+  </svg>
+);
+
+const ShieldIcon = () => (
+  <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+  </svg>
+);
+
+const CiscoIcon = () => (
+  <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+  </svg>
+);
+
+const VirusTotalIcon = () => (
+  <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+  </svg>
+);
+
+export const mockSources: ConnectedSource[] = [
+  {
+    id: "1",
+    name: "Azure AD",
+    type: "Cloud",
+    eventsToday: "1.2M",
+    lastSync: "09:42 AM",
+    status: "Active",
+    icon: <AzureIcon />,
+    iconBg: "bg-blue-500",
+  },
+  {
+    id: "2",
+    name: "Defender ATP",
+    type: "Endpoint",
+    eventsToday: "235K",
+    lastSync: "09:15 AM",
+    status: "Warning",
+    icon: <ShieldIcon />,
+    iconBg: "bg-blue-600",
+  },
+  {
+    id: "3",
+    name: "Cisco Firewall",
+    type: "Network",
+    eventsToday: "560K",
+    lastSync: "09:00 AM",
+    status: "Active",
+    icon: <CiscoIcon />,
+    iconBg: "bg-green-600",
+  },
+  {
+    id: "4",
+    name: "VirusTotal Feed",
+    type: "Threat Intel",
+    eventsToday: "0",
+    lastSync: "N/A",
+    status: "Error",
+    icon: <VirusTotalIcon />,
+    iconBg: "bg-indigo-500",
+  },
+];

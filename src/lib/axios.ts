@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useApiStore } from "../store/apiStore";
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL ?? "http://localhost:3000",
@@ -19,8 +20,11 @@ axiosInstance.interceptors.response.use(
     const status = error.response?.status;
 
     if (status === 401) {
+      // Session expired or not authenticated — clear auth state immediately
+      useApiStore.getState().clearAuth();
+
       // Session expired or not authenticated — redirect to login
-      // window.location.href = "/login";
+      window.location.href = "/auth/login";
     }
 
     const message =

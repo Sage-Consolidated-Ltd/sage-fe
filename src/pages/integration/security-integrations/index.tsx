@@ -1,7 +1,12 @@
 import React from "react";
+import SecurityIntegrationPage from "../../../components/integration/security-integration/SecurityIntegrationPage";
 
 const SecurityIntegrations = () => {
-  return <div>SecurityIntegrations</div>;
+  return (
+    <>
+      <SecurityIntegrationPage />
+    </>
+  );
 };
 
 export default SecurityIntegrations;

@@ -10,7 +10,6 @@ import {
   ChevronRight1Icon,
   MoreIcon,
   Plus1Icon,
-  RunIcon,
   SampleIcon,
 } from "../../../../utils/icons";
 import type { ColumnDef } from "../../../../types/table";
